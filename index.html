@@ -10,7 +10,7 @@
 
 <body>
     <main>
-        <h1 class="heading">Synonymously</h1>
+        <h1 class="heading"><a href="index.html">Synonymously</a></h1>
         <div id="start-area">
             <h3 class="subtitle">Enhance your Vocabulary</h3>
             <div id="user-information">
@@ -25,30 +25,30 @@
             <!-- Option to include a user choice like a username or icon as his player identity -->
             <div id="user-input">Choose your username / icon</div>
             <!-- Button that loads the game page and starts the game -->
-            <button id="start-game-btn"><a href="game.html">Start Game</a></button>
+            <button id="start-game-btn">Start Game</button>
         </div>
         <!-- Start of specific game code, will be hidden until user presses the start game button, then it will show instead of the start content -->
         <div id="game-area" class="hidden">
-            <div id="game-menu" class="hidden">
+            <div id="game-menu">
                 <a href="index.html">Start</a>
             </div>
             <!-- Cicle in which the question and category is displayed, e.g. Verbs Tier One - Pick the Synonym for-->
-            <div id="question-box" class="hidden">Pick the Synonym for: </div>
+            <div id="question-box">Pick the Synonym for: </div>
             <!-- Box for possible icon or username that the user can pick on the start page -->
-            <div id="user-credentials-box" class="hidden"></div>
+            <div id="user-credentials-box"></div>
             <!-- The Score is tracked and shown to the user here, updates as the tiers of the categories are completed and how many correct & incorrect answers were given (?)-->
-            <div id="score-box" class="hidden">Score: </div>
+            <div id="score-box">Score: </div>
             <!-- The buttons with the answer options go here-->
-            <div id="game-box" class="hidden">
+            <div id="game-box">
                 <button class="answer-buttons">Option 1</button>
                 <button class="answer-buttons">Option 2</button>
                 <button class="answer-buttons">Option 3</button>
                 <button class="answer-buttons">Option 4</button>
             </div>
             <!-- Shows an example sentence if answer is correct & a respective synonym for the incorrect answer-->
-            <div id="feedback-box" class="hidden">Example sentence</div>
+            <div id="feedback-box">Example sentence</div>
             <!-- Buttons with the different categories verbs, nouns, adjectives that adjust which category is played and can be switched by the user by clicking on it (move to top?)-->
-            <div id="question-categories-box" class="hidden">
+            <div id="question-categories-box">
                 <button class="category-buttons">Verbs</button>
                 <button class="category-buttons">Adjectives</button>
                 <button class="category-buttons">Nouns</button>
