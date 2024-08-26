@@ -44,7 +44,7 @@ a {
   height: 60vh;
   /* Enable scroll if needed */
   overflow: auto;
-  /* Choose the color */ 
+  /* Choose the color and opacity */ 
   background-color: rgba(0, 0, 0, 0.4);
 }
 
