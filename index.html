@@ -9,22 +9,51 @@
 </head>
 
 <body>
-    <main class="start-area">
+    <main>
         <h1 class="heading">Synonymously</h1>
-        <h3 class="subtitle">Enhance your Vocabulary</h3>
-        <div class="user-information">
-            <!-- Gives user a short introduction of what the game is about -->
-            <p id="welcome-message">Are you learning English but you're tired of using the same words over and over
-                again?
-                Then
-                you're in the right place! Learn synonyms and enhance your vocabulary in a fun way!</p>
-            <!-- Describe how to play here shortly -->
-            <div class="how-to-play">How to play</div>
+        <div id="start-area">
+            <h3 class="subtitle">Enhance your Vocabulary</h3>
+            <div id="user-information">
+                <!-- Gives user a short introduction of what the game is about -->
+                <p id="welcome-message">Are you learning English but you're tired of using the same words over and over
+                    again?
+                    Then
+                    you're in the right place! Learn synonyms and enhance your vocabulary in a fun way!</p>
+                <!-- Describe how to play here shortly -->
+                <div id="how-to-play">How to play</div>
+            </div>
+            <!-- Option to include a user choice like a username or icon as his player identity -->
+            <div id="user-input">Choose your username / icon</div>
+            <!-- Button that loads the game page and starts the game -->
+            <button id="start-game-btn"><a href="game.html">Start Game</a></button>
         </div>
-        <!-- Option to include a user choice like a username or icon as his player identity -->
-        <div class="user-choices">Choose your username / icon</div>
-        <!-- Button that loads the game page and starts the game -->
-        <button id="start-game-btn"><a href="game.html">Start Game</a></button>
+        <!-- Start of specific game code, will be hidden until user presses the start game button, then it will show instead of the start content -->
+        <div id="game-area" class="hidden">
+            <div id="game-menu" class="hidden">
+                <a href="index.html">Start</a>
+            </div>
+            <!-- Cicle in which the question and category is displayed, e.g. Verbs Tier One - Pick the Synonym for-->
+            <div id="question-box" class="hidden">Pick the Synonym for: </div>
+            <!-- Box for possible icon or username that the user can pick on the start page -->
+            <div id="user-credentials-box" class="hidden"></div>
+            <!-- The Score is tracked and shown to the user here, updates as the tiers of the categories are completed and how many correct & incorrect answers were given (?)-->
+            <div id="score-box" class="hidden">Score: </div>
+            <!-- The buttons with the answer options go here-->
+            <div id="game-box" class="hidden">
+                <button class="answer-buttons">Option 1</button>
+                <button class="answer-buttons">Option 2</button>
+                <button class="answer-buttons">Option 3</button>
+                <button class="answer-buttons">Option 4</button>
+            </div>
+            <!-- Shows an example sentence if answer is correct & a respective synonym for the incorrect answer-->
+            <div id="feedback-box" class="hidden">Example sentence</div>
+            <!-- Buttons with the different categories verbs, nouns, adjectives that adjust which category is played and can be switched by the user by clicking on it (move to top?)-->
+            <div id="question-categories-box" class="hidden">
+                <button class="category-buttons">Verbs</button>
+                <button class="category-buttons">Adjectives</button>
+                <button class="category-buttons">Nouns</button>
+            </div>
+        </div>
     </main>
     <script src="assets/js/script.js"></script>
 </body>
