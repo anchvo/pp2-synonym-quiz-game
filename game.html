@@ -10,21 +10,32 @@
 
 <body>
     <main class="game-area">
-        <a href="index.html">Start</a>
         <!-- Includes Title and Links to Homepage and How to Play-Box-->
-        <header id="menu"></header>
+        <header id="menu">
+            <h1 class="heading">Synonymously</h1>
+            <a href="index.html">Start</a>
+        </header>
         <!-- Cicle in which the question and category is displayed, e.g. Verbs Tier One - Pick the Synonym for-->
-        <div class="question-box"></div>
+        <div class="question-box">Pick the Synonym for: </div>
         <!-- Box for possible icon or username that the user can pick on the start page -->
         <div class="user-credentials-box"></div>
         <!-- The Score is tracked and shown to the user here, updates as the tiers of the categories are completed and how many correct & incorrect answers were given (?)-->
-        <div class="score-box"></div>
+        <div class="score-box">Score: </div>
         <!-- The buttons with the answer options go here-->
-        <div class="game-box"></div>
+        <div class="game-box">
+            <button class="answer-buttons">Option 1</button>
+            <button class="answer-buttons">Option 2</button>
+            <button class="answer-buttons">Option 3</button>
+            <button class="answer-buttons">Option 4</button>
+        </div>
         <!-- Shows an example sentence if answer is correct & a respective synonym for the incorrect answer-->
-        <div class="feedback-box"></div>
+        <div class="feedback-box">Example sentence</div>
         <!-- Buttons with the different categories verbs, nouns, adjectives that adjust which category is played and can be switched by the user by clicking on it (move to top?)-->
-        <div class="question-categories-box"></div>
+        <div class="question-categories-box">
+            <button class="category-buttons">Verbs</button>
+            <button class="category-buttons">Adjectives</button>
+            <button class="category-buttons">Nouns</button>
+        </div>
     </main>
     <script src="assets/js/script.js"></script>
 </body>
