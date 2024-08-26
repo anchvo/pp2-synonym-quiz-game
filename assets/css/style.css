@@ -27,3 +27,38 @@ a {
 .hidden {
     display: none;
 }
+
+/* Modal Styling */
+/* Opening the Modal Span */
+#open-instructions {
+
+}
+
+/* Modal Background */
+#instructions-modal {
+  display: none;
+  position: fixed;
+  z-index: 1;
+  /* Position left, right, float ?*/
+  width: 70%;
+  height: 60vh;
+  /* Enable scroll if needed */
+  overflow: auto;
+  /* Choose the color */ 
+  background-color: rgba(0, 0, 0, 0.4);
+}
+
+/* Modal Content / Box */
+#instructions-modal-content {
+  /* background-color ? */
+  margin: 15% auto;
+  padding: 20px;
+  border: 1px solid #888;
+  width: 80%;
+}
+
+/* Closing the Modal Span */
+#close-instructions {
+  color: #aaa;
+  float: right;
+}
