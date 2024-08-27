@@ -28,6 +28,29 @@ a {
     display: none;
 }
 
+/* Button Styling */
+
+button {
+  text-transform: uppercase;
+}
+
+#click-button {
+  width: 220px;
+  height: 60px;
+}
+
+.answer-buttons {
+  width: 100px;
+  height: 100px;
+  border-radius: 30%;
+}
+
+.category-buttons {
+  width: 80px;
+  height: 80px;
+  border-radius: 50%;
+}
+
 /* Modal Styling */
 /* Opening the Modal Span */
 #open-instructions {
@@ -40,21 +63,24 @@ a {
   position: fixed;
   z-index: 1;
   /* Position left, right, float ?*/
-  width: 70%;
+  width: 80vw;
   height: 60vh;
-  /* Enable scroll if needed */
-  overflow: auto;
+  max-height: 450px;
+  max-width: 830px;
+  margin-left: 8%;
+  /* overflow: auto; Remember for possible scrolling if needed */
   /* Choose the color and opacity */ 
-  background-color: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.8);
 }
 
 /* Modal Content / Box */
 #instructions-modal-content {
   /* background-color ? */
-  margin: 15% auto;
+  margin: 10% auto;
   padding: 20px;
   border: 1px solid #888;
-  width: 80%;
+  width: 60%;
+  height: 75%;
 }
 
 /* Closing the Modal Span */
