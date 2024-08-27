@@ -83,17 +83,31 @@ function loadGame(gameType) {
  */
 function displayVerbsQuestions() {
 
+    gameBox.innerHTML = "";
+
     let currentQuestion = verbsQuestions[currentQuestionIndex];
     questionBox.innerHTML = currentQuestion.question;
 
-    currentQuestion.answers.forEach(answer => {
+    currentQuestion.answers.forEach((answer) => {
         let button = document.createElement("button");
+        button.classList.add("answer-buttons");
         button.innerHTML = answer;
-        button.classList.add("answers-button");
+        button.addEventListener('click', () => {
+            checkAnswer(button);
+        });
 
-        //button.addEventListener('click', () => {
-        // checkAnswer(button);
-    });
+        gameBox.appendChild(button);
+    })
+}
 
-    gameBox.appendChild(button);
+function checkAnswer(button) {
+    let answer = button.innerHTML;
+    let answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
+
+    if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
+        alert("Correct Answer")
+    } else {
+        alert("Wrong Answer")
+
+    }
 }
