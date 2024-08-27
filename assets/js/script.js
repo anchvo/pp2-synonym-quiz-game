@@ -79,7 +79,7 @@ function loadGame(gameType) {
 }
 
 /**
- * Loads questions and answers of the verbs category into the game board,
+ * Loads questions and answers of the verbs category into the game board when category is chosen,
  * making them visible for the user
  */
 function displayVerbsQuestions() {
@@ -101,15 +101,22 @@ function displayVerbsQuestions() {
     })
 }
 
-
+/**
+ * Checks if the chosen answer button of the current question in the verbs category is correct or not,
+ * adds feedback for each result to the user and creates buttons to either continue to next question or try again
+ */
 function checkVerbsAnswer(answerButton) {
+    
+    // optionsBox.innerHTML = "";
+
     let answer = answerButton.innerHTML;
     let answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
 
-        /** 
+        /*
+
         let nextButton = document.createElement("button");
         nextButton.classList.add("options-buttons");
         nextButton.innerHTML = "Next Question";
@@ -120,7 +127,7 @@ function checkVerbsAnswer(answerButton) {
         }));
 
         optionsBox.appendChild(nextButton);
-        */
+        */ 
     } else {
         feedbackBox.innerHTML = "Incorrect!";
 
@@ -135,6 +142,10 @@ function checkVerbsAnswer(answerButton) {
     }
 }
 
+/**
+ * Loads questions and answers of the nouns category into the game board when category is chosen,
+ * making them visible for the user
+ */
 function displayNounsQuestions() {
 
     gameBox.innerHTML = "";
@@ -154,7 +165,10 @@ function displayNounsQuestions() {
     })
 }
 
-
+/**
+ * Checks if the chosen answer button of the current question in the nouns category is correct or not,
+ * adds feedback for each result to the user and creates buttons to either continue to next question or try again
+ */
 function checkNounsAnswer(answerButton) {
     let answer = answerButton.innerHTML;
     let answerIndex = nounsQuestions[currentQuestionIndex].answers.indexOf(answer);
@@ -188,6 +202,10 @@ function checkNounsAnswer(answerButton) {
     }
 }
 
+/**
+ * Loads questions and answers of the adjectives category into the game board when category is chosen,
+ * making them visible for the user
+ */
 function displayAdjectivesQuestions() {
 
     gameBox.innerHTML = "";
@@ -207,7 +225,10 @@ function displayAdjectivesQuestions() {
     })
 }
 
-
+/**
+ * Checks if the chosen answer button of the current question in the adjectives category is correct or not,
+ * adds feedback for each result to the user and creates buttons to either continue to next question or try again
+ */
 function checkAdjectivesAnswer(answerButton) {
     let answer = answerButton.innerHTML;
     let answerIndex = adjectivesQuestions[currentQuestionIndex].answers.indexOf(answer);
