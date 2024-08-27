@@ -13,6 +13,7 @@ let userCredentials = document.getElementById("user-credentials-box");
 let questionBox = document.getElementById("question-box");
 let scoreBox = document.getElementById("score-box");
 let gameBox = document.getElementById("game-box");
+let optionsBox = document.getElementById("options-buttons")
 let feedbackBox = document.getElementById("feedback-box");
 
 // Sets Variable to count the different questions and allows to loop through each of them
@@ -89,25 +90,48 @@ function displayVerbsQuestions() {
     questionBox.innerHTML = currentQuestion.question;
 
     currentQuestion.answers.forEach((answer) => {
-        let button = document.createElement("button");
-        button.classList.add("answer-buttons");
-        button.innerHTML = answer;
-        button.addEventListener('click', () => {
-            checkAnswer(button);
+        let answerButton = document.createElement("button");
+        answerButton.classList.add("answer-buttons");
+        answerButton.innerHTML = answer;
+        answerButton.addEventListener('click', () => {
+            checkVerbsAnswer(answerButton);
         });
 
-        gameBox.appendChild(button);
+        gameBox.appendChild(answerButton);
     })
 }
 
-function checkAnswer(button) {
-    let answer = button.innerHTML;
+
+function checkVerbsAnswer(answerButton) {
+    let answer = answerButton.innerHTML;
     let answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
-        alert("Correct Answer")
-    } else {
-        alert("Wrong Answer")
+        feedbackBox.innerHTML = "Correct!";
 
+        /** 
+        let nextButton = document.createElement("button");
+        nextButton.classList.add("options-buttons");
+        nextButton.innerHTML = "Next Question";
+
+        nextButton.addEventListener('click', loadNextQuestion (() => {
+            currentQuestionIndex++;
+            displayVerbsQuestions();
+        }));
+
+        optionsBox.appendChild(nextButton);
+        */
+    } else {
+        feedbackBox.innerHTML = "Incorrect!";
+
+        /** 
+        let retryButton = document.createElement("button");
+        retryButton.classList.add("options-buttons");
+        retryButton.innerHTML = "Try Again";
+
+        optionsBox.appendChild(retryButton);
+
+        */
     }
+
 }
