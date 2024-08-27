@@ -133,5 +133,111 @@ function checkVerbsAnswer(answerButton) {
 
         */
     }
+}
+
+function displayNounsQuestions() {
+
+    gameBox.innerHTML = "";
+
+    let currentQuestion = nounsQuestions[currentQuestionIndex];
+    questionBox.innerHTML = currentQuestion.question;
+
+    currentQuestion.answers.forEach((answer) => {
+        let answerButton = document.createElement("button");
+        answerButton.classList.add("answer-buttons");
+        answerButton.innerHTML = answer;
+        answerButton.addEventListener('click', () => {
+            checkNounsAnswer(answerButton);
+        });
+
+        gameBox.appendChild(answerButton);
+    })
+}
+
+
+function checkNounsAnswer(answerButton) {
+    let answer = answerButton.innerHTML;
+    let answerIndex = nounsQuestions[currentQuestionIndex].answers.indexOf(answer);
+
+    if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
+        feedbackBox.innerHTML = "Correct!";
+
+        /** 
+        let nextButton = document.createElement("button");
+        nextButton.classList.add("options-buttons");
+        nextButton.innerHTML = "Next Question";
+
+        nextButton.addEventListener('click', loadNextQuestion (() => {
+            currentQuestionIndex++;
+            displayVerbsQuestions();
+        }));
+
+        optionsBox.appendChild(nextButton);
+        */
+    } else {
+        feedbackBox.innerHTML = "Incorrect!";
+
+        /** 
+        let retryButton = document.createElement("button");
+        retryButton.classList.add("options-buttons");
+        retryButton.innerHTML = "Try Again";
+
+        optionsBox.appendChild(retryButton);
+
+        */
+    }
+}
+
+function displayAdjectivesQuestions() {
+
+    gameBox.innerHTML = "";
+
+    let currentQuestion = adjectivesQuestions[currentQuestionIndex];
+    questionBox.innerHTML = currentQuestion.question;
+
+    currentQuestion.answers.forEach((answer) => {
+        let answerButton = document.createElement("button");
+        answerButton.classList.add("answer-buttons");
+        answerButton.innerHTML = answer;
+        answerButton.addEventListener('click', () => {
+            checkAdjectivesAnswer(answerButton);
+        });
+
+        gameBox.appendChild(answerButton);
+    })
+}
+
+
+function checkAdjectivesAnswer(answerButton) {
+    let answer = answerButton.innerHTML;
+    let answerIndex = adjectivesQuestions[currentQuestionIndex].answers.indexOf(answer);
+
+    if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
+        feedbackBox.innerHTML = "Correct!";
+
+        /** 
+        let nextButton = document.createElement("button");
+        nextButton.classList.add("options-buttons");
+        nextButton.innerHTML = "Next Question";
+
+        nextButton.addEventListener('click', loadNextQuestion (() => {
+            currentQuestionIndex++;
+            displayVerbsQuestions();
+        }));
+
+        optionsBox.appendChild(nextButton);
+        */
+    } else {
+        feedbackBox.innerHTML = "Incorrect!";
+
+        /** 
+        let retryButton = document.createElement("button");
+        retryButton.classList.add("options-buttons");
+        retryButton.innerHTML = "Try Again";
+
+        optionsBox.appendChild(retryButton);
+
+        */
+    }
 
 }
