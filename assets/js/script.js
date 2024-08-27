@@ -38,7 +38,8 @@ closeInstructionsModal.onclick = function () {
 // Functions
 
 /** Removes hidden class from the category buttons and hiding previous content,
- * allowing the user to choose the category
+ * allowing the user to choose the category. Adds listening event for clicking on a category button,
+ * and loading the loadGame function.
  */
 function startGame() {
 
@@ -55,42 +56,44 @@ function startGame() {
 
     }
 }
+/** Removes hidden class from the game area and hides the category buttons, 
+ * loading the respective functions for each category questions by reading the game-type chosen with buttons in startGame function
+ */
+function loadGame(gameType) {
 
+    gameArea.classList.remove("hidden");
+    categoriesArea.classList.add("hidden");
 
-    function loadGame(gameType) {
-
-        gameArea.classList.remove("hidden");
-        categoriesArea.classList.add("hidden");
-
-        if (gameType === "verbs") {
-            displayVerbsQuestions();
-        } else if (gameType === "nouns") {
-            displayNounsQuestions();
-        } else if (gameType === "adjectives") {
-            displayAdjectivesQuestions();
-        } else {
-            alert(`Unknown game type: ${gameType}`);
-            throw `Unknown game type: ${gameType}. Aborting!`;
-        }
-
+    if (gameType === "verbs") {
+        displayVerbsQuestions();
+    } else if (gameType === "nouns") {
+        displayNounsQuestions();
+    } else if (gameType === "adjectives") {
+        displayAdjectivesQuestions();
+    } else {
+        alert(`Unknown game type: ${gameType}`);
+        throw `Unknown game type: ${gameType}. Aborting!`;
     }
 
-    /**
-     * Loads questions and answers of the verb category into the game board,
-     * making them visible for the user
-     */
-    function displayVerbQuestions() {
+}
 
-        let currentQuestion = verbsQuestions[currentQuestionIndex];
-        questionBox.innerHTML = currentQuestion.question;
+/**
+ * Loads questions and answers of the verbs category into the game board,
+ * making them visible for the user
+ */
+function displayVerbsQuestions() {
 
+    let currentQuestion = verbsQuestions[currentQuestionIndex];
+    questionBox.innerHTML = currentQuestion.question;
 
+    currentQuestion.answers.forEach(answer => {
+        let button = document.createElement("button");
+        button.innerHTML = answer;
+        button.classList.add("answers-button");
 
-        currentQuestion.answers.forEach(item => {
-            let answerButton = document.createElement("button");
-            answerButton.innerHTML = answer;
-            answerButton.classList.add("answer-buttons");
-        });
+        //button.addEventListener('click', () => {
+        // checkAnswer(button);
+    });
 
-        gameBox.appendChild(answerButton);
-    }
+    gameBox.appendChild(button);
+}
