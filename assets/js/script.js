@@ -18,9 +18,6 @@ let feedbackBox = document.getElementById("feedback-box");
 // Sets Variable to count the different questions and allows to loop through each of them
 let currentQuestionIndex = 0;
 
-// Sets variable gameType to allow to refer to different categories
-let gameType = this.getAttribute("data-type");
-
 // Event Listeners
 // Sets the startGame function to the event that the startGameButton is clicked
 startGameButton.addEventListener("click", startGame);
@@ -47,31 +44,53 @@ function startGame() {
 
     startArea.classList.add("hidden");
     categoriesArea.classList.remove("hidden");
-    
+
+    for (let button of categoryButtons) {
+        button.addEventListener("click", function () {
+
+            // Sets variable gameType to allow to refer to different categories
+            let gameType = this.getAttribute("data-type");
+            loadGame(gameType);
+        })
+
+    }
 }
 
 
-function loadGame() {
-    gameArea.classList.remove("hidden");
-    loadQuestion();
-}
+    function loadGame(gameType) {
 
-/**
- * Loads Question and Answers into the Game Board,
- * making them visible for the user
- */
-function loadQuestion() {
+        gameArea.classList.remove("hidden");
+        categoriesArea.classList.add("hidden");
 
-    let currentQuestion = questionsVerbs[currentQuestionIndex];
-    questionBox.innerHTML = currentQuestion.question;
+        if (gameType === "verbs") {
+            displayVerbsQuestions();
+        } else if (gameType === "nouns") {
+            displayNounsQuestions();
+        } else if (gameType === "adjectives") {
+            displayAdjectivesQuestions();
+        } else {
+            alert(`Unknown game type: ${gameType}`);
+            throw `Unknown game type: ${gameType}. Aborting!`;
+        }
+
+    }
+
+    /**
+     * Loads questions and answers of the verb category into the game board,
+     * making them visible for the user
+     */
+    function displayVerbQuestions() {
+
+        let currentQuestion = verbsQuestions[currentQuestionIndex];
+        questionBox.innerHTML = currentQuestion.question;
 
 
 
-    currentQuestion.answers.forEach(item => {
-        let answerButton = document.createElement("button");
-        answerButton.innerHTML = answer;
-        answerButton.classList.add("answer-buttons");
-    });
+        currentQuestion.answers.forEach(item => {
+            let answerButton = document.createElement("button");
+            answerButton.innerHTML = answer;
+            answerButton.classList.add("answer-buttons");
+        });
 
-    gameBox.appendChild(answerButton);
-}
+        gameBox.appendChild(answerButton);
+    }
