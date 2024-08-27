@@ -28,6 +28,12 @@
             <button id="start-game-btn" class="click-button">Start Game</button>
         </div>
         <!-- Start of specific game code, will be hidden until user presses the start game button, then it will show instead of the start content -->
+        <!-- Buttons with the different categories that adjust which category is played and can be switched by the user by clicking on it, first chosen when pressing the start game button -->
+        <div id="game-categories" class="hidden">
+            <button data-type="verbs" class="category-buttons">Verbs</button>
+            <button data-type="nouns" class="category-buttons">Nouns</button>
+            <button data-type="adjectives" class="category-buttons">Adjectives</button>
+        </div>
         <div id="game-area" class="hidden">
             <div id="game-menu">
                 <a href="index.html">Start</a>
@@ -52,19 +58,9 @@
             <div id="score-box">Score: </div>
             <!-- The buttons with the answer options go here-->
             <div id="game-box">
-                <button class="answer-buttons">Option 1</button>
-                <button class="answer-buttons">Option 2</button>
-                <button class="answer-buttons">Option 3</button>
-                <button class="answer-buttons">Option 4</button>
             </div>
             <!-- Shows an example sentence if answer is correct & a respective synonym for the incorrect answer-->
             <div id="feedback-box">Example sentence</div>
-            <!-- Buttons with the different categories verbs, nouns, adjectives that adjust which category is played and can be switched by the user by clicking on it (move to top?)-->
-            <div id="question-categories-box">
-                <button class="category-buttons">Verbs</button>
-                <button class="category-buttons">Nouns</button>
-                <button class="category-buttons">Adjectives</button>
-            </div>
         </div>
     </main>
     <script src="assets/js/gameData.js"></script>

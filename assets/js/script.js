@@ -6,6 +6,7 @@ let categoryButtons = document.getElementsByClassName("category-buttons");
 
 // DOM Elements / Variables
 let startArea = document.getElementById("start-area");
+let categoriesArea = document.getElementById("game-categories");
 let gameArea = document.getElementById("game-area");
 let userInput = document.getElementById("user-input");
 let userCredentials = document.getElementById("user-credentials-box");
@@ -16,6 +17,9 @@ let feedbackBox = document.getElementById("feedback-box");
 
 // Sets Variable to count the different questions and allows to loop through each of them
 let currentQuestionIndex = 0;
+
+// Sets variable gameType to allow to refer to different categories
+let gameType = this.getAttribute("data-type");
 
 // Event Listeners
 // Sets the startGame function to the event that the startGameButton is clicked
@@ -36,14 +40,19 @@ closeInstructionsModal.onclick = function () {
 
 // Functions
 
-/** Removes hidden class from game area and adds it to start Area, 
- * making Homepage content invisible and Game content visible
+/** Removes hidden class from the category buttons and hiding previous content,
+ * allowing the user to choose the category
  */
 function startGame() {
 
-    gameArea.classList.remove("hidden");
     startArea.classList.add("hidden");
+    categoriesArea.classList.remove("hidden");
+    
+}
 
+
+function loadGame() {
+    gameArea.classList.remove("hidden");
     loadQuestion();
 }
 
@@ -62,8 +71,7 @@ function loadQuestion() {
         let answerButton = document.createElement("button");
         answerButton.innerHTML = answer;
         answerButton.classList.add("answer-buttons");
-        });
+    });
 
-        gameBox.appendChild(answerButton);
-    }
-
+    gameBox.appendChild(answerButton);
+}
