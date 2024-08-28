@@ -7,11 +7,15 @@ let categoryButtons = document.getElementsByClassName("category-buttons");
 // DOM Elements / Variables
 let startArea = document.getElementById("start-area");
 let categoriesArea = document.getElementById("game-categories");
+let verbsButton = document.getElementById("verbs-button");
+let nounsButton = document.getElementById("nouns-button");
+let adjectivesButton = document.getElementById("adjectives-button");
 let gameArea = document.getElementById("game-area");
 let userInput = document.getElementById("user-input");
 let userCredentials = document.getElementById("user-credentials-box");
 let questionBox = document.getElementById("question-box");
 let scoreBox = document.getElementById("score-box");
+let infoBox = document.getElementById("info-box");
 let gameBox = document.getElementById("game-box");
 let optionsBox = document.getElementById("options-buttons")
 let nextButton = document.getElementById("next-button");
@@ -69,6 +73,7 @@ function loadGame(gameType) {
     categoriesArea.classList.add("hidden");
 
     if (gameType === "verbs") {
+        verbsButton.classList.add("selected");
         displayVerbsQuestions();
     } else if (gameType === "nouns") {
         displayNounsQuestions();
@@ -133,6 +138,11 @@ function checkVerbsAnswer(answerButton) {
 
 function setNextVerbsQuestion() {
 
+    if (currentQuestionIndex === verbsQuestions.length) {
+        finishFirstCategory ();
+    }
+
+    feedbackBox.innerHTML = "";
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayVerbsQuestions();
@@ -187,6 +197,7 @@ function checkNounsAnswer(answerButton) {
 
 function setNextNounsQuestion() {
 
+    feedbackBox.innerHTML = "";
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayNounsQuestions();
@@ -248,6 +259,7 @@ function checkAdjectivesAnswer(answerButton) {
 
 function setNextAdjectivesQuestion() {
 
+    feedbackBox.innerHTML = "";
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayAdjectivesQuestions();
@@ -265,4 +277,19 @@ function incrementTries() {
     let oldTries = parseInt(document.getElementById("tries-score").innerText);
     document.getElementById("tries-score").innerText = ++oldTries;
 
+}
+
+function finishFirstCategory () {
+
+    if (verbsButton.classList.contains("selected")) {
+        categoriesArea.classList.remove("hidden");
+        verbsButton.classList.add("hidden");
+
+        for (let button of categoryButtons) {
+            button.addEventListener("click", function () {
+                loadGame(gameType);
+            })
+    
+        }
+    }
 }
