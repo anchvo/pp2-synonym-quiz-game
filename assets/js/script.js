@@ -73,7 +73,6 @@ function loadGame(gameType) {
     categoriesArea.classList.add("hidden");
 
     if (gameType === "verbs") {
-        verbsButton.classList.add("selected");
         displayVerbsQuestions();
     } else if (gameType === "nouns") {
         displayNounsQuestions();
@@ -92,6 +91,11 @@ function loadGame(gameType) {
  */
 function displayVerbsQuestions() {
 
+    if (currentQuestionIndex >= verbsQuestions.length) {
+        currentCategory = "verbs-category";
+        finishFirstCategory(currentCategory);
+    }
+    
     gameBox.innerHTML = "";
 
     let currentQuestion = verbsQuestions[currentQuestionIndex];
@@ -144,11 +148,8 @@ function checkVerbsAnswer(answerButton) {
  */
 function setNextVerbsQuestion() {
 
-    if (currentQuestionIndex === verbsQuestions.length) {
-        finishFirstCategory ();
-    }
-
     feedbackBox.innerHTML = "";
+    incrementProgress();
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayVerbsQuestions();
@@ -188,7 +189,7 @@ function checkNounsAnswer(answerButton) {
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
         incrementTries();
-        
+
         // Removes hidden class from next button, allowing the user to click it and advance to the next question
         optionsBox.classList.remove("hidden");
         nextButton.classList.remove("hidden");
@@ -210,6 +211,7 @@ function checkNounsAnswer(answerButton) {
 function setNextNounsQuestion() {
 
     feedbackBox.innerHTML = "";
+    incrementProgress();
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayNounsQuestions();
@@ -259,7 +261,7 @@ function checkAdjectivesAnswer(answerButton) {
         incrementTries();
         nextButton.classList.add("hidden");
 
-      /*
+        /*
         optionsBox.classList.remove("hidden");
         retryButton.classList.remove("hidden");
         retryButton.addEventListener("click"), function () {
@@ -307,18 +309,20 @@ function incrementTries() {
  * After finishing the first category, the user can choose which of the two others he wants to do next.
  * Checks which category was chosen before and shows the choice buttons for the other two, then calls the loadGame function
  */
-function finishFirstCategory () {
+function finishFirstCategory(currentCategory) {
 
-    if (verbsButton.classList.contains("selected")) {
+    questionBox.classList.add("hidden");
+
+    if (currentCategory === "verbs-category") {
         questionBox.classList.add("hidden");
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
 
-        /* for (let button of categoryButtons) {
+        for (let button of categoryButtons) {
             button.addEventListener("click", function () {
                 loadGame(gameType);
             })
-    
-        }*/ 
+
+        }
     }
 }
