@@ -100,7 +100,7 @@ function displayVerbsQuestions() {
         currentCategory = "verbs-category";
         finishFirstCategory(currentCategory);
     }
-    
+
     gameBox.innerHTML = "";
 
     let currentQuestion = verbsQuestions[currentQuestionIndex];
@@ -166,6 +166,11 @@ function setNextVerbsQuestion() {
  */
 function displayNounsQuestions() {
 
+    if (currentQuestionIndex >= nounsQuestions.length) {
+        currentCategory = "nouns-category";
+        finishFirstCategory(currentCategory);
+    }
+
     gameBox.innerHTML = "";
 
     let currentQuestion = nounsQuestions[currentQuestionIndex];
@@ -227,6 +232,11 @@ function setNextNounsQuestion() {
  * making them visible for the user
  */
 function displayAdjectivesQuestions() {
+
+    if (currentQuestionIndex >= adjectivesQuestions.length) {
+        currentCategory = "adjectives-category";
+        finishFirstCategory(currentCategory);
+    }
 
     gameBox.innerHTML = "";
 
@@ -318,16 +328,36 @@ function finishFirstCategory(currentCategory) {
 
     questionBox.classList.add("hidden");
 
+    
+
     if (currentCategory === "verbs-category") {
         questionBox.classList.add("hidden");
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
 
-        for (let button of categoryButtons) {
-            button.addEventListener("click", function () {
-                loadGame(gameType);
-            })
+    }
 
-        }
+    if (currentCategory === "nouns-category") {
+        questionBox.classList.add("hidden");
+        categoriesArea.classList.remove("hidden");
+        nounsButton.classList.add("hidden");
+
+    }
+
+    if (currentCategory === "adjectives-category") {
+        questionBox.classList.add("hidden");
+        categoriesArea.classList.remove("hidden");
+        adjectivesButton.classList.add("hidden");
+
+    }
+
+    for (let button of categoryButtons) {
+        button.addEventListener("click", function () {
+
+            // Sets variable gameType to allow to refer to different categories
+            let gameType = this.getAttribute("data-type");
+            currentCategory = "";
+            loadGame(gameType);
+        })
     }
 }
