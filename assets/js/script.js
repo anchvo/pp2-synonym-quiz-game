@@ -87,7 +87,7 @@ function loadGame(gameType) {
 }
 
 /**
- * Loads questions and answers of the verbs category into the game board when category is chosen,
+ * Loads questions and buttons with answer options of the verbs category into the game board when category is chosen,
  * making them visible for the user
  */
 function displayVerbsQuestions() {
@@ -124,6 +124,7 @@ function checkVerbsAnswer(answerButton) {
         feedbackBox.innerHTML = "Correct!";
         incrementTries();
 
+        // Removes hidden class from next button, allowing the user to click it and advance to the next question
         optionsBox.classList.remove("hidden");
         nextButton.classList.remove("hidden");
         nextButton.addEventListener("click", setNextVerbsQuestion);
@@ -136,6 +137,11 @@ function checkVerbsAnswer(answerButton) {
     }
 }
 
+/**
+ * After pressing the nextButton, the function clears the feedback and hides the button. 
+ * It then loads the next question in the verbs category array. 
+ * If the array of questions is at an end, the function calls another to show the info and choices at the end of the category.
+ */
 function setNextVerbsQuestion() {
 
     if (currentQuestionIndex === verbsQuestions.length) {
@@ -149,7 +155,7 @@ function setNextVerbsQuestion() {
 }
 
 /**
- * Loads questions and answers of the nouns category into the game board when category is chosen,
+ * Loads questions and buttons with answer options of the nouns category into the game board when category is chosen,
  * making them visible for the user
  */
 function displayNounsQuestions() {
@@ -182,7 +188,8 @@ function checkNounsAnswer(answerButton) {
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
         incrementTries();
-
+        
+        // Removes hidden class from next button, allowing the user to click it and advance to the next question
         optionsBox.classList.remove("hidden");
         nextButton.classList.remove("hidden");
         nextButton.addEventListener("click", setNextNounsQuestion);
@@ -195,6 +202,11 @@ function checkNounsAnswer(answerButton) {
     }
 }
 
+/**
+ * After pressing the nextButton, the function clears the feedback and hides the button. 
+ * It then loads the next question in the nouns category array. 
+ * If the array of questions is at an end, the function calls another to show the info and choices at the end of the category.
+ */
 function setNextNounsQuestion() {
 
     feedbackBox.innerHTML = "";
@@ -204,7 +216,7 @@ function setNextNounsQuestion() {
 }
 
 /**
- * Loads questions and answers of the adjectives category into the game board when category is chosen,
+ * Loads questions and buttons with answer options of the adjectives category into the game board when category is chosen,
  * making them visible for the user
  */
 function displayAdjectivesQuestions() {
@@ -238,6 +250,7 @@ function checkAdjectivesAnswer(answerButton) {
         feedbackBox.innerHTML = "Correct!";
         incrementTries();
 
+        // Removes hidden class from next button, allowing the user to click it and advance to the next question
         optionsBox.classList.remove("hidden");
         nextButton.classList.remove("hidden");
         nextButton.addEventListener("click", setNextAdjectivesQuestion);
@@ -257,6 +270,11 @@ function checkAdjectivesAnswer(answerButton) {
 
 }
 
+/**
+ * After pressing the nextButton, the function clears the feedback and hides the button. 
+ * It then loads the next question in the adjectives category array. 
+ * If the array of questions is at an end, the function calls another to show the info and choices at the end of the category.
+ */
 function setNextAdjectivesQuestion() {
 
     feedbackBox.innerHTML = "";
@@ -266,12 +284,18 @@ function setNextAdjectivesQuestion() {
     incrementProgress();
 }
 
+/**
+ * Calls the value of the set progress number from the HTML element (0) and adds +1
+ */
 function incrementProgress() {
 
     let oldProgress = parseInt(document.getElementById("tier-progress").innerText);
     document.getElementById("tier-progress").innerText = ++oldProgress;
 }
 
+/**
+ * Calls the value of the set tries number from the HTML element (0) and adds +1
+ */
 function incrementTries() {
 
     let oldTries = parseInt(document.getElementById("tries-score").innerText);
@@ -279,17 +303,22 @@ function incrementTries() {
 
 }
 
+/**
+ * After finishing the first category, the user can choose which of the two others he wants to do next.
+ * Checks which category was chosen before and shows the choice buttons for the other two, then calls the loadGame function
+ */
 function finishFirstCategory () {
 
     if (verbsButton.classList.contains("selected")) {
+        questionBox.classList.add("hidden");
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
 
-        for (let button of categoryButtons) {
+        /* for (let button of categoryButtons) {
             button.addEventListener("click", function () {
                 loadGame(gameType);
             })
     
-        }
+        }*/ 
     }
 }
