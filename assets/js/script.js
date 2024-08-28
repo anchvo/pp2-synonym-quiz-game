@@ -327,31 +327,36 @@ function incrementTries() {
 function finishFirstCategory(currentCategory) {
 
     questionBox.classList.add("hidden");
+    scoreBox.classList.add("hidden");
+    infoBox.classList.remove("hidden");
 
-    
+    infoOptions.textContent= "Please choose your next category: ";
 
     if (currentCategory === "verbs-category") {
-        questionBox.classList.add("hidden");
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
+
+        infoProgress.textContent = "Congratulations! You finished all Tiers of the Verbs Category!";
 
     }
 
     if (currentCategory === "nouns-category") {
-        questionBox.classList.add("hidden");
         categoriesArea.classList.remove("hidden");
         nounsButton.classList.add("hidden");
+
+        infoProgress.textContent = "Congratulations! You finished all Tiers of the Nouns Category!";
 
     }
 
     if (currentCategory === "adjectives-category") {
-        questionBox.classList.add("hidden");
         categoriesArea.classList.remove("hidden");
         adjectivesButton.classList.add("hidden");
 
+        infoProgress.textContent = "Congratulations! You finished all Tiers of the Adjectives Category!";
+
     }
 
-    for (let button of categoryButtons) {
+    /* for (let button of categoryButtons) {
         button.addEventListener("click", function () {
 
             // Sets variable gameType to allow to refer to different categories
@@ -359,5 +364,5 @@ function finishFirstCategory(currentCategory) {
             currentCategory = "";
             loadGame(gameType);
         })
-    }
+    }*/ 
 }
