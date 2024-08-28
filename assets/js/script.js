@@ -14,6 +14,8 @@ let questionBox = document.getElementById("question-box");
 let scoreBox = document.getElementById("score-box");
 let gameBox = document.getElementById("game-box");
 let optionsBox = document.getElementById("options-buttons")
+let nextButton = document.getElementById("next-button");
+let retryButton = document.getElementById("retry-button");
 let feedbackBox = document.getElementById("feedback-box");
 
 // Sets Variable to count the different questions and allows to loop through each of them
@@ -23,7 +25,7 @@ let currentQuestionIndex = 0;
 // Sets the startGame function to the event that the startGameButton is clicked
 startGameButton.addEventListener("click", startGame);
 
-// Modal with open and close functions
+// Modal for How to Play instructions with open and close functions
 let instructionsModal = document.getElementById("instructions-modal");
 let openInstructionsModal = document.getElementById("open-instructions");
 let closeInstructionsModal = document.getElementById("close-instructions");
@@ -63,6 +65,7 @@ function startGame() {
 function loadGame(gameType) {
 
     gameArea.classList.remove("hidden");
+    optionsBox.classList.add("hidden");
     categoriesArea.classList.add("hidden");
 
     if (gameType === "verbs") {
@@ -106,7 +109,7 @@ function displayVerbsQuestions() {
  * adds feedback for each result to the user and creates buttons to either continue to next question or try again
  */
 function checkVerbsAnswer(answerButton) {
-    
+
     // optionsBox.innerHTML = "";
 
     let answer = answerButton.innerHTML;
@@ -115,19 +118,10 @@ function checkVerbsAnswer(answerButton) {
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
 
-        /*
+        optionsBox.classList.remove("hidden");
+        nextButton.classList.remove("hidden");
+        nextButton.addEventListener("click", setNextVerbsQuestion);
 
-        let nextButton = document.createElement("button");
-        nextButton.classList.add("options-buttons");
-        nextButton.innerHTML = "Next Question";
-
-        nextButton.addEventListener("click", function() {
-            currentQuestionIndex++;
-            displayVerbsQuestions();
-        });
-
-        optionsBox.appendChild(nextButton);
-        */ 
     } else {
         feedbackBox.innerHTML = "Incorrect!";
 
@@ -140,6 +134,13 @@ function checkVerbsAnswer(answerButton) {
 
         */
     }
+}
+
+function setNextVerbsQuestion() {
+
+    optionsBox.classList.add("hidden");
+    currentQuestionIndex++;
+    displayVerbsQuestions();
 }
 
 /**
@@ -176,18 +177,10 @@ function checkNounsAnswer(answerButton) {
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
 
-        /** 
-        let nextButton = document.createElement("button");
-        nextButton.classList.add("options-buttons");
-        nextButton.innerHTML = "Next Question";
+        optionsBox.classList.remove("hidden");
+        nextButton.classList.remove("hidden");
+        nextButton.addEventListener("click", setNextNounsQuestion);
 
-        nextButton.addEventListener('click', () => {
-            currentQuestionIndex++;
-            displayVerbsQuestions();
-        }));
-
-        optionsBox.appendChild(nextButton);
-        */
     } else {
         feedbackBox.innerHTML = "Incorrect!";
 
@@ -200,6 +193,13 @@ function checkNounsAnswer(answerButton) {
 
         */
     }
+}
+
+function setNextNounsQuestion() {
+
+    optionsBox.classList.add("hidden");
+    currentQuestionIndex++;
+    displayNounsQuestions();
 }
 
 /**
@@ -236,29 +236,27 @@ function checkAdjectivesAnswer(answerButton) {
     if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
 
-        /** 
-        let nextButton = document.createElement("button");
-        nextButton.classList.add("options-buttons");
-        nextButton.innerHTML = "Next Question";
-
-        nextButton.addEventListener('click', loadNextQuestion (() => {
-            currentQuestionIndex++;
-            displayVerbsQuestions();
-        }));
-
-        optionsBox.appendChild(nextButton);
-        */
+        optionsBox.classList.remove("hidden");
+        nextButton.classList.remove("hidden");
+        nextButton.addEventListener("click", setNextAdjectivesQuestion);
     } else {
         feedbackBox.innerHTML = "Incorrect!";
+        nextButton.classList.add("hidden");
 
-        /** 
-        let retryButton = document.createElement("button");
-        retryButton.classList.add("options-buttons");
-        retryButton.innerHTML = "Try Again";
-
-        optionsBox.appendChild(retryButton);
-
+        /*
+        optionsBox.classList.remove("hidden");
+        retryButton.classList.remove("hidden");
+        retryButton.addEventListener("click"), function () {
+            feedbackBox.innerHTML = "";
+        }
         */
     }
 
+}
+
+function setNextAdjectivesQuestion() {
+
+    optionsBox.classList.add("hidden");
+    currentQuestionIndex++;
+    displayAdjectivesQuestions();
 }

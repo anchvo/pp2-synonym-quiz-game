@@ -60,15 +60,14 @@
                 <p id="tries-score"></p>
             </div>
             <!-- The buttons with the answer options go here-->
-            <div id="game-box">
-                <!-- <button class="answer-buttons" id="answer1"></button>
-                <button class="answer-buttons" id="answer2"></button>
-                <button class="answer-buttons" id="answer3"></button>
-                <button class="answer-buttons" id="answer4"></button> -->
-            </div>
-            <div class="options-buttons"></div>
+            <div id="game-box"></div>
             <!-- Shows an example sentence if answer is correct & a respective synonym for the incorrect answer-->
             <div id="feedback-box"></div>
+            <!-- Option buttons that show when a question was answered correctly or incorrectly -->
+            <div id="options-buttons" class="hidden">
+                <button id="next-button" class="hidden">Next Question</button>
+                <button id="retry-button" class="hidden">Try Again</button>
+            </div>
         </div>
     </main>
     <script src="assets/js/gameData.js"></script>
