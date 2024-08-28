@@ -18,6 +18,8 @@ let questionBox = document.getElementById("question-box");
 let scoreBox = document.getElementById("score-box");
 let infoBox = document.getElementById("info-box");
 let infoProgress = document.getElementById("current-progress");
+let tierProgress = document.getElementById("tier-progress");
+let triesScore = document.getElementById("tries-score");
 let infoOptions = document.getElementById("user-options");
 let gameBox = document.getElementById("game-box");
 let optionsBox = document.getElementById("options-buttons")
@@ -316,8 +318,12 @@ function setNextAdjectivesQuestion() {
  */
 function incrementProgress() {
 
+    /* let tierProgress = 0;
+    tierProgress.innerHTML = ++tierProgress; */ 
+
     let oldProgress = parseInt(document.getElementById("tier-progress").innerText);
     document.getElementById("tier-progress").innerText = ++oldProgress;
+    
 }
 
 /**
