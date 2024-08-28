@@ -93,7 +93,7 @@ function displayVerbsQuestions() {
         let answerButton = document.createElement("button");
         answerButton.classList.add("answer-buttons");
         answerButton.innerHTML = answer;
-        answerButton.addEventListener('click', () => {
+        answerButton.addEventListener("click", () => {
             checkVerbsAnswer(answerButton);
         });
 
@@ -121,10 +121,10 @@ function checkVerbsAnswer(answerButton) {
         nextButton.classList.add("options-buttons");
         nextButton.innerHTML = "Next Question";
 
-        nextButton.addEventListener('click', loadNextQuestion (() => {
+        nextButton.addEventListener("click", function() {
             currentQuestionIndex++;
             displayVerbsQuestions();
-        }));
+        });
 
         optionsBox.appendChild(nextButton);
         */ 
@@ -181,7 +181,7 @@ function checkNounsAnswer(answerButton) {
         nextButton.classList.add("options-buttons");
         nextButton.innerHTML = "Next Question";
 
-        nextButton.addEventListener('click', loadNextQuestion (() => {
+        nextButton.addEventListener('click', () => {
             currentQuestionIndex++;
             displayVerbsQuestions();
         }));

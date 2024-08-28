@@ -55,7 +55,10 @@
             <!-- Box for possible icon or username that the user can pick on the start page -->
             <div id="user-credentials-box"></div>
             <!-- The Score is tracked and shown to the user here, updates as the tiers of the categories are completed and how many correct & incorrect answers were given (?)-->
-            <div id="score-box">Score: </div>
+            <div id="score-box">
+                <p id="tier-progress"></p>
+                <p id="tries-score"></p>
+            </div>
             <!-- The buttons with the answer options go here-->
             <div id="game-box">
                 <!-- <button class="answer-buttons" id="answer1"></button>
@@ -65,7 +68,7 @@
             </div>
             <div class="options-buttons"></div>
             <!-- Shows an example sentence if answer is correct & a respective synonym for the incorrect answer-->
-            <div id="feedback-box">Example sentence</div>
+            <div id="feedback-box"></div>
         </div>
     </main>
     <script src="assets/js/gameData.js"></script>
