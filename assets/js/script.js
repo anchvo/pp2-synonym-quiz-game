@@ -10,12 +10,15 @@ let categoriesArea = document.getElementById("game-categories");
 let verbsButton = document.getElementById("verbs-button");
 let nounsButton = document.getElementById("nouns-button");
 let adjectivesButton = document.getElementById("adjectives-button");
+let gameMenu = document.getElementById("game-menu");
 let gameArea = document.getElementById("game-area");
 let userInput = document.getElementById("user-input");
 let userCredentials = document.getElementById("user-credentials-box");
 let questionBox = document.getElementById("question-box");
 let scoreBox = document.getElementById("score-box");
 let infoBox = document.getElementById("info-box");
+let infoProgress = document.getElementById("current-progress");
+let infoOptions = document.getElementById("user-options");
 let gameBox = document.getElementById("game-box");
 let optionsBox = document.getElementById("options-buttons")
 let nextButton = document.getElementById("next-button");
@@ -51,6 +54,7 @@ closeInstructionsModal.onclick = function () {
 function startGame() {
 
     startArea.classList.add("hidden");
+    gameMenu.classList.remove("hidden");
     categoriesArea.classList.remove("hidden");
 
     for (let button of categoryButtons) {
@@ -68,6 +72,7 @@ function startGame() {
  */
 function loadGame(gameType) {
 
+    gameMenu.classList.remove("hidden");
     gameArea.classList.remove("hidden");
     optionsBox.classList.add("hidden");
     categoriesArea.classList.add("hidden");
