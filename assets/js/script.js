@@ -117,7 +117,6 @@ function checkVerbsAnswer(answerButton) {
 
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
-        incrementProgress();
         incrementTries();
 
         optionsBox.classList.remove("hidden");
@@ -127,6 +126,7 @@ function checkVerbsAnswer(answerButton) {
     } else {
         feedbackBox.innerHTML = "Incorrect!";
         incrementTries();
+        nextButton.classList.add("hidden");
 
     }
 }
@@ -171,7 +171,6 @@ function checkNounsAnswer(answerButton) {
 
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
-        incrementProgress();
         incrementTries();
 
         optionsBox.classList.remove("hidden");
@@ -181,6 +180,7 @@ function checkNounsAnswer(answerButton) {
     } else {
         feedbackBox.innerHTML = "Incorrect!";
         incrementTries();
+        nextButton.classList.add("hidden");
 
     }
 }
@@ -225,7 +225,6 @@ function checkAdjectivesAnswer(answerButton) {
 
     if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
-        incrementProgress();
         incrementTries();
 
         optionsBox.classList.remove("hidden");
@@ -252,6 +251,7 @@ function setNextAdjectivesQuestion() {
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayAdjectivesQuestions();
+    incrementProgress();
 }
 
 function incrementProgress() {
