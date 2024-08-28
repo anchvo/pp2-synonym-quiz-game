@@ -34,15 +34,43 @@ button {
   text-transform: uppercase;
 }
 
-#click-button {
-  width: 220px;
+.options-button, .category-buttons {
+  width: 150px;
   height: 60px;
+  border-radius: 5%;
+  border-color: #264653;
+}
+
+.options-button:hover, .category-buttons:hover {
+  background-color: #264653;
+  border: none;
+  color: white;
+}
+
+#game-box {
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  justify-content: space-evenly;
+  align-items: center;
+  max-width: 60vw;
+  margin-left: auto;
+  margin-right: auto;
+
 }
 
 .answer-buttons {
   width: 100px;
   height: 100px;
   border-radius: 30%;
+  margin-top: 5%;
+  letter-spacing: 0.5px;
+  border-color: #F4A261;
+}
+
+.answer-buttons:hover {
+  background-color: #F4A261;
+  font-weight: bold;
 }
 
 .category-buttons {
