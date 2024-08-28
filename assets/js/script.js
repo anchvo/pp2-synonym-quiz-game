@@ -117,6 +117,8 @@ function checkVerbsAnswer(answerButton) {
 
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
+        incrementProgress();
+        incrementTries();
 
         optionsBox.classList.remove("hidden");
         nextButton.classList.remove("hidden");
@@ -124,15 +126,8 @@ function checkVerbsAnswer(answerButton) {
 
     } else {
         feedbackBox.innerHTML = "Incorrect!";
+        incrementTries();
 
-        /** 
-        let retryButton = document.createElement("button");
-        retryButton.classList.add("options-buttons");
-        retryButton.innerHTML = "Try Again";
-
-        optionsBox.appendChild(retryButton);
-
-        */
     }
 }
 
@@ -176,6 +171,8 @@ function checkNounsAnswer(answerButton) {
 
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
+        incrementProgress();
+        incrementTries();
 
         optionsBox.classList.remove("hidden");
         nextButton.classList.remove("hidden");
@@ -183,15 +180,8 @@ function checkNounsAnswer(answerButton) {
 
     } else {
         feedbackBox.innerHTML = "Incorrect!";
+        incrementTries();
 
-        /** 
-        let retryButton = document.createElement("button");
-        retryButton.classList.add("options-buttons");
-        retryButton.innerHTML = "Try Again";
-
-        optionsBox.appendChild(retryButton);
-
-        */
     }
 }
 
@@ -235,21 +225,24 @@ function checkAdjectivesAnswer(answerButton) {
 
     if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
+        incrementProgress();
+        incrementTries();
 
         optionsBox.classList.remove("hidden");
         nextButton.classList.remove("hidden");
         nextButton.addEventListener("click", setNextAdjectivesQuestion);
     } else {
         feedbackBox.innerHTML = "Incorrect!";
+        incrementTries();
         nextButton.classList.add("hidden");
 
-        /*
+      /*
         optionsBox.classList.remove("hidden");
         retryButton.classList.remove("hidden");
         retryButton.addEventListener("click"), function () {
             feedbackBox.innerHTML = "";
         }
-        */
+*/
     }
 
 }
@@ -259,4 +252,17 @@ function setNextAdjectivesQuestion() {
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayAdjectivesQuestions();
+}
+
+function incrementProgress() {
+
+    let oldProgress = parseInt(document.getElementById("tier-progress").innerText);
+    document.getElementById("tier-progress").innerText = ++oldProgress;
+}
+
+function incrementTries() {
+
+    let oldTries = parseInt(document.getElementById("tries-score").innerText);
+    document.getElementById("tries-score").innerText = ++oldTries;
+
 }
