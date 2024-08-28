@@ -5,7 +5,8 @@ let verbsQuestions = [
     {
         question: "Find the the synonym for understand",
         answers: ["comprehend", "master", "think", "imagine"],
-        correctAnswer: 0
+        correctAnswer: 0,
+        example: "Example Sentence"
     },
 
     // Tier Two question

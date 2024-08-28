@@ -134,8 +134,13 @@ function checkVerbsAnswer(answerButton) {
     let answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
-        feedbackBox.innerHTML = "Correct!";
         incrementTries();
+        
+        // Adds feedback to the user when answering correctly, displaying the example sentence
+        let example = verbsQuestions[currentQuestionIndex].example;
+        feedbackBox.textContent = `Correct! + ${example}`;
+        
+        // Adds class to answer-button that allows styling for correct answer
         // answerButton.classList.add = "correct-answer";
 
         // Removes hidden class from next button, allowing the user to click it and advance to the next question
