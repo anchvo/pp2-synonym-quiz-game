@@ -73,6 +73,12 @@ button {
   font-weight: bold;
 }
 
+/*
+.correct-answer:active {
+  background-color: #2A9D8F;
+}
+  */
+
 .category-buttons {
   width: 80px;
   height: 80px;
@@ -98,7 +104,8 @@ button {
   margin-left: 8%;
   /* overflow: auto; Remember for possible scrolling if needed */
   /* Choose the color and opacity */ 
-  background-color: rgba(0, 0, 0, 0.8);
+  background-color: rgba(38, 70, 83, 0.8);
+  color: white;
 }
 
 /* Modal Content / Box */

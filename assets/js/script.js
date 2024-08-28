@@ -28,6 +28,10 @@ let feedbackBox = document.getElementById("feedback-box");
 // Sets Variable to count the different questions and allows to loop through each of them
 let currentQuestionIndex = 0;
 
+// Set variable as array to put finished categories in
+let finishedCategories = [];
+
+
 // Event Listeners
 // Sets the startGame function to the event that the startGameButton is clicked
 startGameButton.addEventListener("click", startGame);
@@ -132,6 +136,7 @@ function checkVerbsAnswer(answerButton) {
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
         feedbackBox.innerHTML = "Correct!";
         incrementTries();
+        // answerButton.classList.add = "correct-answer";
 
         // Removes hidden class from next button, allowing the user to click it and advance to the next question
         optionsBox.classList.remove("hidden");
@@ -329,40 +334,57 @@ function finishFirstCategory(currentCategory) {
     questionBox.classList.add("hidden");
     scoreBox.classList.add("hidden");
     infoBox.classList.remove("hidden");
+    
 
+    
     infoOptions.textContent= "Please choose your next category: ";
+
+    /* Checks if the current category is set for verbs so only the buttons for the other two categories are shown.
+    Shows a congratulary message specific to the category to the user.
+    */
 
     if (currentCategory === "verbs-category") {
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
-
+        finishedCategories.push("Verbs");
         infoProgress.textContent = "Congratulations! You finished all Tiers of the Verbs Category!";
 
+        /*
+        for (nounsButton; adjectivesButton;) {
+            button.addEventListener("click", function () {
+    
+                // Sets variable gameType to allow to refer to different categories
+                oldProgress = 0;
+                oldTries = 0;
+                let gameType = this.getAttribute("data-type");
+                loadGame(gameType);
+
+            })
+        } 
+        */
     }
 
+    /* Checks if the current category is set for nouns so only the buttons for the other two categories are shown.
+    Shows a congratulary message specific to the category to the user.
+    */
     if (currentCategory === "nouns-category") {
         categoriesArea.classList.remove("hidden");
         nounsButton.classList.add("hidden");
+        finishedCategories.push("Nouns");
 
         infoProgress.textContent = "Congratulations! You finished all Tiers of the Nouns Category!";
 
     }
 
+    /* Checks if the current category is set for adjectives so only the buttons for the other two categories are shown.
+    Shows a congratulary message specific to the category to the user.
+    */
     if (currentCategory === "adjectives-category") {
         categoriesArea.classList.remove("hidden");
         adjectivesButton.classList.add("hidden");
+        finishedCategories.push("Adjectives");
 
         infoProgress.textContent = "Congratulations! You finished all Tiers of the Adjectives Category!";
 
     }
-
-    /* for (let button of categoryButtons) {
-        button.addEventListener("click", function () {
-
-            // Sets variable gameType to allow to refer to different categories
-            let gameType = this.getAttribute("data-type");
-            currentCategory = "";
-            loadGame(gameType);
-        })
-    }*/ 
 }
