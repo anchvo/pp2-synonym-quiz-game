@@ -148,12 +148,13 @@ function checkVerbsAnswer(answerButton) {
     let answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
-        incrementTries();
-        
+
         // Adds feedback to the user when answering correctly, displaying the example sentence
         let example = verbsQuestions[currentQuestionIndex].example;
-        feedbackBox.textContent = `Correct! + ${example}`;
-        
+        feedbackBox.textContent = `Correct! ${example}`;
+
+        // Increments the Tries each times a answer button is clicked
+        incrementTries();
         // Adds class to answer-button that allows styling for correct answer
         // answerButton.classList.add = "correct-answer";
 
@@ -164,6 +165,7 @@ function checkVerbsAnswer(answerButton) {
 
     } else {
         feedbackBox.innerHTML = "Incorrect!";
+        // Increments the Tries each times a answer button is clicked
         incrementTries();
         nextButton.classList.add("hidden");
 
@@ -200,6 +202,8 @@ function displayNounsQuestions() {
     let currentQuestion = nounsQuestions[currentQuestionIndex];
     questionSynonym.innerHTML = currentQuestion.question;
 
+    synonymDescription.innerHTML = currentQuestion.description;
+
     currentQuestion.answers.forEach((answer) => {
         let answerButton = document.createElement("button");
         answerButton.classList.add("answer-buttons");
@@ -221,7 +225,11 @@ function checkNounsAnswer(answerButton) {
     let answerIndex = nounsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
-        feedbackBox.innerHTML = "Correct!";
+
+        // Adds feedback to the user when answering correctly, displaying the example sentence
+        let example = nounsQuestions[currentQuestionIndex].example;
+        feedbackBox.textContent = `Correct! ${example}`;
+        // Increments the Tries each times a answer button is clicked
         incrementTries();
 
         // Removes hidden class from next button, allowing the user to click it and advance to the next question
@@ -231,6 +239,7 @@ function checkNounsAnswer(answerButton) {
 
     } else {
         feedbackBox.innerHTML = "Incorrect!";
+        // Increments the Tries each times a answer button is clicked
         incrementTries();
         nextButton.classList.add("hidden");
 
@@ -267,6 +276,8 @@ function displayAdjectivesQuestions() {
     let currentQuestion = adjectivesQuestions[currentQuestionIndex];
     questionSynonym.innerHTML = currentQuestion.question;
 
+    synonymDescription.innerHTML = currentQuestion.description;
+
     currentQuestion.answers.forEach((answer) => {
         let answerButton = document.createElement("button");
         answerButton.classList.add("answer-buttons");
@@ -288,7 +299,11 @@ function checkAdjectivesAnswer(answerButton) {
     let answerIndex = adjectivesQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
-        feedbackBox.innerHTML = "Correct!";
+
+        // Adds feedback to the user when answering correctly, displaying the example sentence
+        let example = adjectivesQuestions[currentQuestionIndex].example;
+        feedbackBox.textContent = `Correct! ${example}`;
+        // Increments the Tries each times a answer button is clicked
         incrementTries();
 
         // Removes hidden class from next button, allowing the user to click it and advance to the next question
@@ -297,6 +312,7 @@ function checkAdjectivesAnswer(answerButton) {
         nextButton.addEventListener("click", setNextAdjectivesQuestion);
     } else {
         feedbackBox.innerHTML = "Incorrect!";
+        // Increments the Tries each times a answer button is clicked
         incrementTries();
         nextButton.classList.add("hidden");
 
@@ -335,7 +351,7 @@ function incrementProgress() {
 
     /* let oldProgress = parseInt(document.getElementById("tier-progress").innerText);
     document.getElementById("tier-progress").innerText = ++oldProgress;*/
-    
+
 }
 
 /**
@@ -345,7 +361,7 @@ function incrementTries() {
 
     scoreTries++;
     triesScore.innerHTML = scoreTries;
-    
+
     /* let oldTries = parseInt(document.getElementById("tries-score").innerText);
     document.getElementById("tries-score").innerText = ++oldTries; */
 
@@ -360,10 +376,10 @@ function finishFirstCategory(currentCategory) {
     questionBox.classList.add("hidden");
     scoreBox.classList.add("hidden");
     infoBox.classList.remove("hidden");
-    
 
-    
-    infoOptions.textContent= "Please choose your next category:";
+
+
+    infoOptions.textContent = "Please choose your next category:";
 
     /* Checks if the current category is set for verbs so only the buttons for the other two categories are shown.
     Shows a congratulary message specific to the category to the user.
