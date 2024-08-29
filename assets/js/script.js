@@ -108,8 +108,16 @@ function continueGame() {
     infoOptions.textContent = "Please choose your next category:";
 
     if (finishedCategories.includes("Verbs")) {
+
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
+
+        if (finishedCategories.includes("Verbs" && "Nouns")) {
+            nounsButton.classList.add("hidden");
+
+        } else if (finishedCategories.includes("Verbs" && "Adjectives")) {
+            adjectivesButton.classList.add("hidden");
+        }
 
         for (let button of categoryButtons) {
             button.addEventListener("click", function () {
@@ -125,6 +133,13 @@ function continueGame() {
         categoriesArea.classList.remove("hidden");
         nounsButton.classList.add("hidden");
 
+        if (finishedCategories.includes("Nouns" && "Verbs")) {
+            verbsButton.classList.add("hidden");
+
+        } else if (finishedCategories.includes("Nouns" && "Adjectives")) {
+            adjectivesButton.classList.add("hidden");
+        }
+
         for (let button of categoryButtons) {
             button.addEventListener("click", function () {
 
@@ -138,6 +153,13 @@ function continueGame() {
     if (finishedCategories.includes("Adjectives")) {
         categoriesArea.classList.remove("hidden");
         adjectivesButton.classList.add("hidden");
+
+        if (finishedCategories.includes("Adjectives" && "Nouns")) {
+            nounsButton.classList.add("hidden");
+
+        } else if (finishedCategories.includes("Adjectives" && "Verbs")) {
+            verbsButton.classList.add("hidden");
+        }
 
         for (let button of categoryButtons) {
             button.addEventListener("click", function () {
@@ -183,7 +205,7 @@ function displayVerbsQuestions() {
 
     if (currentQuestionIndex >= verbsQuestions.length) {
         currentCategory = "verbs-category";
-        finishFirstCategory(currentCategory);
+        finishCategory(currentCategory);
     }
 
     gameBox.innerHTML = "";
@@ -212,11 +234,15 @@ function displayVerbsQuestions() {
 function checkVerbsAnswer(answerButton) {
 
     // optionsBox.innerHTML = "";
-
     let answer = answerButton.innerHTML;
     let answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
+    if (answerIndex >= verbsQuestions.length) {
+        currentCategory = "verbs-category";
+        optionsBox.classList.remove("hidden");
+        continueButton.classList.remove("hidden");
+        continueButton.addEventListener("click", finishCategory(currentCategory));
+    } else if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
         answerButton.style.backgroundColor = "#289D8F";
@@ -270,7 +296,7 @@ function displayNounsQuestions() {
 
     if (currentQuestionIndex >= nounsQuestions.length) {
         currentCategory = "nouns-category";
-        finishFirstCategory(currentCategory);
+        finishCategory(currentCategory);
     }
 
     gameBox.innerHTML = "";
@@ -353,7 +379,7 @@ function displayAdjectivesQuestions() {
 
     if (currentQuestionIndex >= adjectivesQuestions.length) {
         currentCategory = "adjectives-category";
-        finishFirstCategory(currentCategory);
+        finishCategory(currentCategory);
     }
 
     gameBox.innerHTML = "";
@@ -457,7 +483,7 @@ function incrementTries() {
  * After finishing the first category, the user can choose which of the two others he wants to do next.
  * Checks which category was chosen before and shows the choice buttons for the other two, then calls the loadGame function
  */
-function finishFirstCategory(currentCategory) {
+function finishCategory(currentCategory) {
 
     questionBox.classList.add("hidden");
     scoreBox.classList.add("hidden");
