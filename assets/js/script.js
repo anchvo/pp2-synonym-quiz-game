@@ -193,7 +193,7 @@ function loadGame(gameType) {
  */
 function displayVerbsQuestions() {
 
-    if (currentQuestionIndex === verbsQuestions.length) {
+    if (currentQuestionIndex >= verbsQuestions.length) {
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
     } else {
@@ -205,7 +205,7 @@ function displayVerbsQuestions() {
 
         synonymDescription.innerHTML = currentQuestion.description;
 
-        let index=availableQuestions.indexOf(currentQuestionIndex);
+        let index = availableQuestions.indexOf(currentQuestionIndex);
         availableQuestions.splice(index, 1);
 
         currentQuestion.answers.forEach((answer) => {
@@ -227,11 +227,10 @@ function displayVerbsQuestions() {
  */
 function checkVerbsAnswer(answerButton) {
 
-    // optionsBox.innerHTML = "";
     answer = answerButton.innerHTML;
     answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (currentQuestionIndex === verbsQuestions.length) {
+    if (currentQuestionIndex >= verbsQuestions.length) {
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
     } else if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
@@ -273,7 +272,7 @@ function checkVerbsAnswer(answerButton) {
  */
 function setNextVerbsQuestion() {
 
-    if (currentQuestionIndex === verbsQuestions.length) {
+    if (currentQuestionIndex >= verbsQuestions.length) {
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
     } else {
@@ -283,6 +282,8 @@ function setNextVerbsQuestion() {
         optionsBox.classList.add("hidden");
         currentQuestionIndex++;
         displayVerbsQuestions();
+
+        // Console Logs for Checking 
         console.log(scoreTiers);
         console.log(scoreTries);
         console.log(currentQuestionIndex);
@@ -295,28 +296,29 @@ function setNextVerbsQuestion() {
  */
 function displayNounsQuestions() {
 
-    if (currentQuestionIndex >= nounsQuestions.length) {
+    if (currentQuestionIndex === nounsQuestions.length) {
         currentCategory = "nouns-category";
         finishCategory(currentCategory);
+    } else {
+
+        gameBox.innerHTML = "";
+
+        currentQuestion = nounsQuestions[currentQuestionIndex];
+        questionSynonym.innerHTML = currentQuestion.question;
+
+        synonymDescription.innerHTML = currentQuestion.description;
+
+        currentQuestion.answers.forEach((answer) => {
+            let answerButton = document.createElement("button");
+            answerButton.classList.add("answer-buttons");
+            answerButton.innerHTML = answer;
+            answerButton.addEventListener('click', () => {
+                checkNounsAnswer(answerButton);
+            });
+
+            gameBox.appendChild(answerButton);
+        })
     }
-
-    gameBox.innerHTML = "";
-
-    currentQuestion = nounsQuestions[currentQuestionIndex];
-    questionSynonym.innerHTML = currentQuestion.question;
-
-    synonymDescription.innerHTML = currentQuestion.description;
-
-    currentQuestion.answers.forEach((answer) => {
-        let answerButton = document.createElement("button");
-        answerButton.classList.add("answer-buttons");
-        answerButton.innerHTML = answer;
-        answerButton.addEventListener('click', () => {
-            checkNounsAnswer(answerButton);
-        });
-
-        gameBox.appendChild(answerButton);
-    })
 }
 
 /**
@@ -327,7 +329,11 @@ function checkNounsAnswer(answerButton) {
     answer = answerButton.innerHTML;
     answerIndex = nounsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
+
+    if (currentQuestionIndex === nounsQuestions.length) {
+        currentCategory = "nouns-category";
+        finishCategory(currentCategory);
+    } else if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
         answerButton.style.backgroundColor = "#289D8F";
@@ -365,11 +371,22 @@ function checkNounsAnswer(answerButton) {
  */
 function setNextNounsQuestion() {
 
-    feedbackBox.innerHTML = "";
-    incrementProgress();
-    optionsBox.classList.add("hidden");
-    currentQuestionIndex++;
-    displayNounsQuestions();
+    if (currentQuestionIndex === nounsQuestions.length) {
+        currentCategory = "nouns-category";
+        finishCategory(currentCategory);
+    } else {
+
+        feedbackBox.innerHTML = "";
+        incrementProgress();
+        optionsBox.classList.add("hidden");
+        currentQuestionIndex++;
+        displayNounsQuestions();
+
+        // Console Logs for Checking 
+        console.log(scoreTiers);
+        console.log(scoreTries);
+        console.log(currentQuestionIndex);
+    }
 }
 
 /**
@@ -378,28 +395,29 @@ function setNextNounsQuestion() {
  */
 function displayAdjectivesQuestions() {
 
-    if (currentQuestionIndex >= adjectivesQuestions.length) {
+    if (currentQuestionIndex === adjectivesQuestions.length) {
         currentCategory = "adjectives-category";
         finishCategory(currentCategory);
+    } else {
+
+        gameBox.innerHTML = "";
+
+        currentQuestion = adjectivesQuestions[currentQuestionIndex];
+        questionSynonym.innerHTML = currentQuestion.question;
+
+        synonymDescription.innerHTML = currentQuestion.description;
+
+        currentQuestion.answers.forEach((answer) => {
+            let answerButton = document.createElement("button");
+            answerButton.classList.add("answer-buttons");
+            answerButton.innerHTML = answer;
+            answerButton.addEventListener('click', () => {
+                checkAdjectivesAnswer(answerButton);
+            });
+
+            gameBox.appendChild(answerButton);
+        })
     }
-
-    gameBox.innerHTML = "";
-
-    currentQuestion = adjectivesQuestions[currentQuestionIndex];
-    questionSynonym.innerHTML = currentQuestion.question;
-
-    synonymDescription.innerHTML = currentQuestion.description;
-
-    currentQuestion.answers.forEach((answer) => {
-        let answerButton = document.createElement("button");
-        answerButton.classList.add("answer-buttons");
-        answerButton.innerHTML = answer;
-        answerButton.addEventListener('click', () => {
-            checkAdjectivesAnswer(answerButton);
-        });
-
-        gameBox.appendChild(answerButton);
-    })
 }
 
 /**
@@ -410,7 +428,10 @@ function checkAdjectivesAnswer(answerButton) {
     answer = answerButton.innerHTML;
     answerIndex = adjectivesQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
+    if (currentQuestionIndex === adjectivesQuestions.length) {
+        currentCategory = "adjectives-category";
+        finishCategory(currentCategory);
+    } else if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
         answerButton.style.backgroundColor = "#289D8F";
@@ -447,11 +468,22 @@ function checkAdjectivesAnswer(answerButton) {
  */
 function setNextAdjectivesQuestion() {
 
-    feedbackBox.innerHTML = "";
-    optionsBox.classList.add("hidden");
-    currentQuestionIndex++;
-    displayAdjectivesQuestions();
-    incrementProgress();
+    if (currentQuestionIndex === adjectivesQuestions.length) {
+        currentCategory = "adjectives-category";
+        finishCategory(currentCategory);
+    } else {
+
+        feedbackBox.innerHTML = "";
+        optionsBox.classList.add("hidden");
+        currentQuestionIndex++;
+        displayAdjectivesQuestions();
+        incrementProgress();
+
+        // Console Logs for Checking 
+        console.log(scoreTiers);
+        console.log(scoreTries);
+        console.log(currentQuestionIndex);
+    }
 }
 
 /**
