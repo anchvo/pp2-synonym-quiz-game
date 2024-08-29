@@ -3,7 +3,6 @@ let startGameButton = document.getElementById("start-game-btn");
 let answerButtons = document.getElementsByClassName("answer-buttons");
 let categoryButtons = document.getElementsByClassName("category-buttons");
 
-
 // DOM Elements / Static Variables
 let startArea = document.getElementById("start-area");
 let categoriesArea = document.getElementById("game-categories");
@@ -29,20 +28,26 @@ let nextButton = document.getElementById("next-button");
 let retryButton = document.getElementById("retry-button");
 let feedbackBox = document.getElementById("feedback-box");
 
-// Variables with preset (undefined) value which will be set in functions later
-// Sets Variable to count the different questions and allows to loop through each of them
+// Variables with preset (undefined) value which will be set in functions later and have to be reset for another game loop
+// Sets variable for reading the data-type attribute of the category buttons, allowing to pick a different category with each button
+let gameType;
+// Sets variable to count the different questions and allows to loop through each of them
 let currentQuestionIndex = 0;
 let currentQuestion;
-// Set variable as array to put finished categories in
-let finishedCategories = [];
+let currentCategory;
+let example;
+/*
+// Sets variable to create buttons that hold answer options
+let answerButton;
+*/
 // Set variable to count the score for finished category tiers
 let scoreTiers = 0;
 // Set variable to count the score for number of tries
 let scoreTries = 0;
 
-
-
-
+// Variables with preset (undefined) value which will be set in functions later but can't be reset
+// Set variable as array to put finished categories in
+let finishedCategories = [];
 
 // Event Listeners
 // Sets the startGame function to the event that the startGameButton is clicked
@@ -77,7 +82,7 @@ function startGame() {
         button.addEventListener("click", function () {
 
             // Sets variable gameType to allow to refer to different categories
-            let gameType = this.getAttribute("data-type");
+            gameType = this.getAttribute("data-type");
             loadGame(gameType);
         })
 
@@ -150,7 +155,7 @@ function checkVerbsAnswer(answerButton) {
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds feedback to the user when answering correctly, displaying the example sentence
-        let example = verbsQuestions[currentQuestionIndex].example;
+        example = verbsQuestions[currentQuestionIndex].example;
         feedbackBox.textContent = `Correct! ${example}`;
 
         // Increments the Tries each times a answer button is clicked
@@ -199,7 +204,7 @@ function displayNounsQuestions() {
 
     gameBox.innerHTML = "";
 
-    let currentQuestion = nounsQuestions[currentQuestionIndex];
+    currentQuestion = nounsQuestions[currentQuestionIndex];
     questionSynonym.innerHTML = currentQuestion.question;
 
     synonymDescription.innerHTML = currentQuestion.description;
@@ -227,7 +232,7 @@ function checkNounsAnswer(answerButton) {
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds feedback to the user when answering correctly, displaying the example sentence
-        let example = nounsQuestions[currentQuestionIndex].example;
+        example = nounsQuestions[currentQuestionIndex].example;
         feedbackBox.textContent = `Correct! ${example}`;
         // Increments the Tries each times a answer button is clicked
         incrementTries();
@@ -273,7 +278,7 @@ function displayAdjectivesQuestions() {
 
     gameBox.innerHTML = "";
 
-    let currentQuestion = adjectivesQuestions[currentQuestionIndex];
+    currentQuestion = adjectivesQuestions[currentQuestionIndex];
     questionSynonym.innerHTML = currentQuestion.question;
 
     synonymDescription.innerHTML = currentQuestion.description;
@@ -301,7 +306,7 @@ function checkAdjectivesAnswer(answerButton) {
     if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds feedback to the user when answering correctly, displaying the example sentence
-        let example = adjectivesQuestions[currentQuestionIndex].example;
+        example = adjectivesQuestions[currentQuestionIndex].example;
         feedbackBox.textContent = `Correct! ${example}`;
         // Increments the Tries each times a answer button is clicked
         incrementTries();
@@ -315,14 +320,6 @@ function checkAdjectivesAnswer(answerButton) {
         // Increments the Tries each times a answer button is clicked
         incrementTries();
         nextButton.classList.add("hidden");
-
-        /*
-        optionsBox.classList.remove("hidden");
-        retryButton.classList.remove("hidden");
-        retryButton.addEventListener("click"), function () {
-            feedbackBox.innerHTML = "";
-        }
-*/
     }
 
 }
@@ -392,19 +389,7 @@ function finishFirstCategory(currentCategory) {
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Verbs category!`;
 
-        /*
-        for (nounsButton; adjectivesButton;) {
-            button.addEventListener("click", function () {
-    
-                // Sets variable gameType to allow to refer to different categories
-                oldProgress = 0;
-                oldTries = 0;
-                let gameType = this.getAttribute("data-type");
-                loadGame(gameType);
-
-            })
-        } 
-        */
+        clearGame();
     }
 
     /* Checks if the current category is set for nouns so only the buttons for the other two categories are shown.
@@ -432,4 +417,16 @@ function finishFirstCategory(currentCategory) {
         You finished all ${scoreTiers} tiers of the Adjectives category!`;
 
     }
+}
+
+function clearGame() {
+    gameType;
+    currentQuestion;
+    currentQuestionIndex = 0;
+    example;
+    currentCategory;
+    scoreTiers = 0;
+    scoreTries = 0;
+
+    startGame();
 }
