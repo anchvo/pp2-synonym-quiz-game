@@ -383,13 +383,10 @@ function finishFirstCategory(currentCategory) {
     */
 
     if (currentCategory === "verbs-category") {
-        categoriesArea.classList.remove("hidden");
-        verbsButton.classList.add("hidden");
         finishedCategories.push("Verbs");
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Verbs category!`;
 
-        clearGame();
     }
 
     /* Checks if the current category is set for nouns so only the buttons for the other two categories are shown.
@@ -420,6 +417,7 @@ function finishFirstCategory(currentCategory) {
 }
 
 function clearGame() {
+    
     gameType;
     currentQuestion;
     currentQuestionIndex = 0;
@@ -428,5 +426,15 @@ function clearGame() {
     scoreTiers = 0;
     scoreTries = 0;
 
-    startGame();
+    continueGame();
+}
+
+function continueGame() {
+
+    if (finishedCategories.includes("Verbs")) {
+        categoriesArea.classList.remove("hidden");
+        verbsButton.classList.add("hidden");
+
+        startGame();
+    }
 }
