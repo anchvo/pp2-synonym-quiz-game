@@ -103,7 +103,9 @@ function clearGame() {
 
 function continueGame() {
 
-    infoBox.classList.add("hidden");
+    infoProgress.classList.add("hidden");
+
+    infoOptions.textContent = "Please choose your next category:";
 
     if (finishedCategories.includes("Verbs")) {
         categoriesArea.classList.remove("hidden");
