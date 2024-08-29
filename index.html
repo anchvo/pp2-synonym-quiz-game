@@ -17,11 +17,19 @@
                 <!-- Gives user a short introduction of what the game is about -->
                 <p id="welcome-message">You're learning English but stuck on the same words?
                     <br>
-                    Then you're in the right place! <br> Learn new meanings of words by finding their synonyms in a fun quiz game!
+                    Then you're in the right place! <br> Learn new meanings of words by finding their synonyms in a fun
+                    quiz game!
                 </p>
                 <!-- Describe how to play here shortly -->
-                <div id="how-to-play">How to play</div>
-                <p id="start-instructions"></p>
+                <div id="start-instructions">
+                    <p id="start-instructions-title">How to play</p>
+                    <p id="start-instructions-content">
+                        Start the Game <br>
+                        Choose a Category <br>
+                        Find the right Synonym <br>
+                        Learn new Words
+                    </p>
+                </div>
             </div>
             <!-- Option to include a user choice like a username or icon as his player identity 
             <div id="user-input">Choose your username / icon</div> -->
@@ -29,9 +37,9 @@
             <button id="start-game-btn" class="options-button">Start Game</button>
         </div>
         <div id="game-menu" class="hidden">
-            <a href="index.html">Return to Start</a>
+            <a href="index.html" id="return-to-start">Return to Start</a>
             <!-- Code for instructions modal, opening up as an overlay during the game rather than showing up on the page itself-->
-            <span id="open-instructions">How to Play</span>
+            <span id="open-instructions">Help</span>
             <div id="instructions-modal">
                 <div id="instructions-modal-content">
                     <span id="close-instructions">&times;</span>
@@ -42,23 +50,23 @@
                     </p>
                 </div>
             </div>
-
-            <!-- After each category is finished, a congratulatory message and the user's current progress is shown here. The user can also pick one of the remaining two categories -->
-            <div id="info-box" class="hidden">
-                <p id="current-progress"></p>
-                <p id="user-options"></p>
-            </div>
-            <!-- Buttons with the different categories that adjust which category is played and can be switched by the user by clicking on it, first chosen when pressing the start game button -->
-            <div id="game-categories" class="hidden">
-                <button data-type="verbs" id="verbs-button" class="category-buttons">Verbs</button>
-                <button data-type="nouns" id="nouns-button" class="category-buttons">Nouns</button>
-                <button data-type="adjectives" id="adjectives-button" class="category-buttons">Adjectives</button>
-            </div>
+        </div>
+        <!-- After each category is finished, a congratulatory message and the user's current progress is shown here. The user can also pick one of the remaining two categories -->
+        <div id="info-box" class="hidden">
+            <p id="current-progress"></p>
+            <p id="user-options"></p>
+        </div>
+        <!-- Buttons with the different categories that adjust which category is played and can be switched by the user by clicking on it, first chosen when pressing the start game button -->
+        <div id="game-categories" class="hidden">
+            <button data-type="verbs" id="verbs-button" class="category-buttons">Verbs</button>
+            <button data-type="nouns" id="nouns-button" class="category-buttons">Nouns</button>
+            <button data-type="adjectives" id="adjectives-button" class="category-buttons">Adjectives</button>
         </div>
         <!-- Start of specific game code, will be hidden until user chooses a category -->
         <div id="game-area" class="hidden">
             <!-- Cicle in which the question is displayed, e.g. Verbs Tier One - Pick the Synonym for verb.-->
-            <div id="question-box">Find the Synonym for:<br><span id="question-synonym"></span><br> as in <span id="synonym-description"></span></div>
+            <div id="question-box">Find the Synonym for:<br><span id="question-synonym"></span><br> as in <span
+                    id="synonym-description"></span></div>
             <!-- Box for possible icon or username that the user can pick on the start page 
             <div id="user-credentials-box"></div> -->
             <!-- The Score is tracked and shown to the user here, updates as the tiers of the categories are completed and how many correct & incorrect answers were given (?)-->
