@@ -51,10 +51,6 @@ let scoreTries = 0;
 // Set variable as array to put finished categories in
 let finishedCategories = [];
 
-// Event Listeners
-// Sets the startGame function to the event that the startGameButton is clicked
-startGameButton.addEventListener("click", startGame);
-
 // Modal for How to Play instructions with open and close functions
 let instructionsModal = document.getElementById("instructions-modal");
 let openInstructionsModal = document.getElementById("open-instructions");
@@ -68,6 +64,10 @@ closeInstructionsModal.onclick = function () {
     instructionsModal.style.display = "none";
 }
 
+// Event Listeners
+// Sets the startGame function to the event that the startGameButton is clicked
+startGameButton.addEventListener("click", startGame);
+
 // Functions
 
 /** Removes hidden class from the category buttons and hiding previous content,
@@ -78,6 +78,8 @@ function startGame() {
 
     startArea.classList.add("hidden");
     gameMenu.classList.remove("hidden");
+    questionBox.classList.add("hidden");
+    gameBox.classList.add("hidden");
     categoriesArea.classList.remove("hidden");
 
     for (let button of categoryButtons) {
@@ -94,10 +96,12 @@ function startGame() {
 function continueGame() {
 
     infoProgress.classList.add("hidden");
+    questionBox.classList.add("hidden");
+    gameBox.classList.add("hidden");
 
     infoOptions.textContent = "Please choose your next category:";
 
-    if (finishedCategories.includes("Verbs")) {
+    if (finishedCategories.includes("Verbs Finished")) {
 
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
@@ -109,14 +113,6 @@ function continueGame() {
             adjectivesButton.classList.add("hidden");
         }
 
-        for (let button of categoryButtons) {
-            button.addEventListener("click", function () {
-
-                // Sets variable gameType to allow to refer to different categories
-                gameType = this.getAttribute("data-type");
-                loadGame(gameType);
-            })
-        }
     }
 
     if (finishedCategories.includes("Nouns")) {
@@ -161,6 +157,14 @@ function continueGame() {
         }
     }
 
+    for (let button of categoryButtons) {
+        button.addEventListener("click", function () {
+
+            // Sets variable gameType to allow to refer to different categories
+            gameType = this.getAttribute("data-type");
+            loadGame(gameType);
+        })
+    }
 
 }
 
@@ -195,6 +199,8 @@ function loadGame(gameType) {
 function displayVerbsQuestions() {
 
     if (currentQuestionIndex === verbsQuestions.length) {
+        questionBox.classList.add("hidden");
+        gameBox.classList.add("hidden");
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
     } else {
@@ -232,6 +238,8 @@ function checkVerbsAnswer(answerButton) {
     answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (currentQuestionIndex === verbsQuestions.length) {
+        questionBox.classList.add("hidden");
+        gameBox.classList.add("hidden");
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
     } else if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
@@ -275,6 +283,8 @@ function setNextVerbsQuestion() {
 
     if (currentQuestionIndex === verbsQuestions.length) {
         currentCategory = "verbs-category";
+        questionBox.classList.add("hidden");
+        gameBox.classList.add("hidden");
         finishCategory(currentCategory);
     } else {
 
@@ -513,8 +523,9 @@ function incrementTries() {
  */
 function finishCategory(currentCategory) {
 
-    gameBox.classList.add("hidden");
+    optionsBox.classList.remove("hidden");
     questionBox.classList.add("hidden");
+    gameBox.classList.add("hidden");
     scoreBox.classList.add("hidden");
     infoBox.classList.remove("hidden");
 
@@ -523,7 +534,7 @@ function finishCategory(currentCategory) {
      */
 
     if (currentCategory === "verbs-category") {
-        finishedCategories.push("Verbs");
+        finishedCategories.push("Verbs Finished");
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Verbs category!`;
 
@@ -531,9 +542,7 @@ function finishCategory(currentCategory) {
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
-        continueButton.addEventListener("click", () => {
-            clearGame(continueButton);
-        });
+        continueButton.addEventListener("click", clearGame);
 
     }
     /* Checks if the current category is set for nouns so the congratulary message is shown for the right category.
@@ -567,29 +576,27 @@ function finishCategory(currentCategory) {
         });
 
     }
-
-    optionsBox.classList.remove("hidden");
-    nextButton.classList.add("hidden");
-    continueButton.classList.remove("hidden");
-
 }
 
 function clearGame() {
 
-    optionsBox.classList.add("hidden");
+    questionBox.classList.add("hidden");
+    gameBox.classList.add("hidden");
 
-    gameType;
+    gameType = "";
     currentQuestion;
     currentQuestionIndex = 0;
     answerIndex = 0;
     example;
-    currentCategory;
+    currentCategory = "";
     scoreTiers = 0;
     scoreTries = 0;
 
+    // Console Logs for Checking
     console.log(scoreTiers);
     console.log(scoreTries);
     console.log(currentQuestionIndex);
+    console.log(finishedCategories);
 
     continueGame();
 }
