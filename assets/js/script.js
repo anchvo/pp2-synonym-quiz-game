@@ -101,59 +101,41 @@ function continueGame() {
 
     infoOptions.textContent = "Please choose your next category:";
 
-    if (finishedCategories.includes("Verbs Finished")) {
+    if (finishedCategories.includes("Verb")) {
 
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
 
-        if (finishedCategories.includes("Verbs" && "Nouns")) {
+        if (finishedCategories.includes("Verb" && "Noun")) {
             nounsButton.classList.add("hidden");
 
-        } else if (finishedCategories.includes("Verbs" && "Adjectives")) {
+        } else if (finishedCategories.includes("Verb" && "Adjective")) {
             adjectivesButton.classList.add("hidden");
         }
 
     }
 
-    if (finishedCategories.includes("Nouns")) {
+    if (finishedCategories.includes("Noun")) {
         categoriesArea.classList.remove("hidden");
         nounsButton.classList.add("hidden");
 
-        if (finishedCategories.includes("Nouns" && "Verbs")) {
+        if (finishedCategories.includes("Noun" && "Verb")) {
             verbsButton.classList.add("hidden");
 
-        } else if (finishedCategories.includes("Nouns" && "Adjectives")) {
+        } else if (finishedCategories.includes("Noun" && "Adjective")) {
             adjectivesButton.classList.add("hidden");
-        }
-
-        for (let button of categoryButtons) {
-            button.addEventListener("click", function () {
-
-                // Sets variable gameType to allow to refer to different categories
-                gameType = this.getAttribute("data-type");
-                loadGame(gameType);
-            })
         }
     }
 
-    if (finishedCategories.includes("Adjectives")) {
+    if (finishedCategories.includes("Adjective")) {
         categoriesArea.classList.remove("hidden");
         adjectivesButton.classList.add("hidden");
 
-        if (finishedCategories.includes("Adjectives" && "Nouns")) {
+        if (finishedCategories.includes("Adjective" && "Noun")) {
             nounsButton.classList.add("hidden");
 
-        } else if (finishedCategories.includes("Adjectives" && "Verbs")) {
+        } else if (finishedCategories.includes("Adjective" && "Verb")) {
             verbsButton.classList.add("hidden");
-        }
-
-        for (let button of categoryButtons) {
-            button.addEventListener("click", function () {
-
-                // Sets variable gameType to allow to refer to different categories
-                gameType = this.getAttribute("data-type");
-                loadGame(gameType);
-            })
         }
     }
 
@@ -201,7 +183,7 @@ function displayVerbsQuestions() {
     if (currentQuestionIndex === verbsQuestions.length) {
         questionBox.classList.add("hidden");
         gameBox.classList.add("hidden");
-        currentCategory = "verbs-category";
+        currentCategory = "verb-category";
         finishCategory(currentCategory);
     } else {
 
@@ -240,7 +222,7 @@ function checkVerbsAnswer(answerButton) {
     if (currentQuestionIndex === verbsQuestions.length) {
         questionBox.classList.add("hidden");
         gameBox.classList.add("hidden");
-        currentCategory = "verbs-category";
+        currentCategory = "verb-category";
         finishCategory(currentCategory);
     } else if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
 
@@ -282,7 +264,7 @@ function checkVerbsAnswer(answerButton) {
 function setNextVerbsQuestion() {
 
     if (currentQuestionIndex === verbsQuestions.length) {
-        currentCategory = "verbs-category";
+        currentCategory = "verb-category";
         questionBox.classList.add("hidden");
         gameBox.classList.add("hidden");
         finishCategory(currentCategory);
@@ -308,7 +290,7 @@ function setNextVerbsQuestion() {
 function displayNounsQuestions() {
 
     if (currentQuestionIndex === nounsQuestions.length) {
-        currentCategory = "nouns-category";
+        currentCategory = "noun-category";
         finishCategory(currentCategory);
     } else {
 
@@ -342,7 +324,7 @@ function checkNounsAnswer(answerButton) {
 
 
     if (currentQuestionIndex === nounsQuestions.length) {
-        currentCategory = "nouns-category";
+        currentCategory = "noun-category";
         finishCategory(currentCategory);
     } else if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
 
@@ -383,7 +365,7 @@ function checkNounsAnswer(answerButton) {
 function setNextNounsQuestion() {
 
     if (currentQuestionIndex === nounsQuestions.length) {
-        currentCategory = "nouns-category";
+        currentCategory = "noun-category";
         finishCategory(currentCategory);
     } else {
 
@@ -407,7 +389,7 @@ function setNextNounsQuestion() {
 function displayAdjectivesQuestions() {
 
     if (currentQuestionIndex === adjectivesQuestions.length) {
-        currentCategory = "adjectives-category";
+        currentCategory = "adjective-category";
         finishCategory(currentCategory);
     } else {
 
@@ -440,7 +422,7 @@ function checkAdjectivesAnswer(answerButton) {
     answerIndex = adjectivesQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (currentQuestionIndex === adjectivesQuestions.length) {
-        currentCategory = "adjectives-category";
+        currentCategory = "adjective-category";
         finishCategory(currentCategory);
     } else if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
 
@@ -480,7 +462,7 @@ function checkAdjectivesAnswer(answerButton) {
 function setNextAdjectivesQuestion() {
 
     if (currentQuestionIndex === adjectivesQuestions.length) {
-        currentCategory = "adjectives-category";
+        currentCategory = "adjective-category";
         finishCategory(currentCategory);
     } else {
 
@@ -533,8 +515,8 @@ function finishCategory(currentCategory) {
     /* Checks if the current category is set for verbs so the congratulary message is shown for the right category.
      */
 
-    if (currentCategory === "verbs-category") {
-        finishedCategories.push("Verbs Finished");
+    if (currentCategory === "verb-category") {
+        finishedCategories.push("Verb");
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Verbs category!`;
 
@@ -547,8 +529,8 @@ function finishCategory(currentCategory) {
     }
     /* Checks if the current category is set for nouns so the congratulary message is shown for the right category.
      */
-    else if (currentCategory === "nouns-category") {
-        finishedCategories.push("Nouns");
+    else if (currentCategory === "noun-category") {
+        finishedCategories.push("Noun");
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Nouns category!`;
 
@@ -561,8 +543,8 @@ function finishCategory(currentCategory) {
 
     /* Checks if the current category is set for adjectives so the congratulary message is shown for the right category.
      */
-    else if (currentCategory === "adjectives-category") {
-        finishedCategories.push("Adjectives");
+    else if (currentCategory === "adjective-category") {
+        finishedCategories.push("Adjective");
 
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Adjectives category!`;
