@@ -35,6 +35,7 @@ let gameType;
 let currentQuestionIndex = 0;
 let currentQuestion;
 
+// Variable for possible questions array
 let availableQuestions = [];
 let currentCategory;
 let example;
@@ -193,7 +194,7 @@ function loadGame(gameType) {
  */
 function displayVerbsQuestions() {
 
-    if (currentQuestionIndex >= verbsQuestions.length) {
+    if (currentQuestionIndex === verbsQuestions.length) {
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
     } else {
@@ -205,8 +206,8 @@ function displayVerbsQuestions() {
 
         synonymDescription.innerHTML = currentQuestion.description;
 
-        let index = availableQuestions.indexOf(currentQuestionIndex);
-        availableQuestions.splice(index, 1);
+        /* let index = availableQuestions.indexOf(currentQuestionIndex);
+        availableQuestions.splice(index, 1);*/ 
 
         currentQuestion.answers.forEach((answer) => {
             let answerButton = document.createElement("button");
@@ -230,7 +231,7 @@ function checkVerbsAnswer(answerButton) {
     answer = answerButton.innerHTML;
     answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (currentQuestionIndex >= verbsQuestions.length) {
+    if (currentQuestionIndex === verbsQuestions.length) {
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
     } else if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
@@ -272,7 +273,7 @@ function checkVerbsAnswer(answerButton) {
  */
 function setNextVerbsQuestion() {
 
-    if (currentQuestionIndex >= verbsQuestions.length) {
+    if (currentQuestionIndex === verbsQuestions.length) {
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
     } else {
@@ -524,8 +525,7 @@ function finishCategory(currentCategory) {
     infoBox.classList.remove("hidden");
 
 
-    /* Checks if the current category is set for verbs so only the buttons for the other two categories are shown.
-    Shows a congratulary message specific to the category to the user.
+    /* Checks if the current category is set for verbs so the congratulary message is shown for the right category.
     */
 
     if (currentCategory === "verbs-category") {
@@ -533,32 +533,31 @@ function finishCategory(currentCategory) {
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Verbs category!`;
 
-        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category
+        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category.
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
-        continueButton.addEventListener("click", clearGame());
-
+        continueButton.addEventListener("click", () => {
+            clearGame(continueButton);
+        });
 
     }
 
-    /* Checks if the current category is set for nouns so only the buttons for the other two categories are shown.
-    Shows a congratulary message specific to the category to the user.
+    /* Checks if the current category is set for nouns so the congratulary message is shown for the right category.
     */
     if (currentCategory === "nouns-category") {
         finishedCategories.push("Nouns");
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Nouns category!`;
 
-        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category
+        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category.
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
         // continueButton.addEventListener("click", clearGame);
     }
 
-    /* Checks if the current category is set for adjectives so only the buttons for the other two categories are shown.
-    Shows a congratulary message specific to the category to the user.
+    /* Checks if the current category is set for adjectives so the congratulary message is shown for the right category.
     */
     if (currentCategory === "adjectives-category") {
         finishedCategories.push("Adjectives");
@@ -566,7 +565,7 @@ function finishCategory(currentCategory) {
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Adjectives category!`;
 
-        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category
+        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category.
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
