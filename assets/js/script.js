@@ -218,14 +218,16 @@ function checkVerbsAnswer(answerButton) {
 
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
 
+        // Adds styling to answer button when answer is correct
+        answerButton.style.backgroundColor = "green";
+        answerButton.style.border = "none";
+
         // Adds feedback to the user when answering correctly, displaying the example sentence
         example = verbsQuestions[currentQuestionIndex].example;
         feedbackBox.textContent = `Correct! ${example}`;
 
         // Increments the Tries each times a answer button is clicked
         incrementTries();
-        // Adds class to answer-button that allows styling for correct answer
-        // answerButton.classList.add = "correct-answer";
 
         // Removes hidden class from next button, allowing the user to click it and advance to the next question
         optionsBox.classList.remove("hidden");
@@ -233,6 +235,11 @@ function checkVerbsAnswer(answerButton) {
         nextButton.addEventListener("click", setNextVerbsQuestion);
 
     } else {
+
+        // Adds styling to answer button when answer is incorrect
+        answerButton.style.backgroundColor = "red";
+        answerButton.style.border = "none";
+
         feedbackBox.innerHTML = "Incorrect!";
         // Increments the Tries each times a answer button is clicked
         incrementTries();
@@ -295,6 +302,10 @@ function checkNounsAnswer(answerButton) {
 
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
 
+        // Adds styling to answer button when answer is correct
+        answerButton.style.backgroundColor = "green";
+        answerButton.style.border = "none";
+
         // Adds feedback to the user when answering correctly, displaying the example sentence
         example = nounsQuestions[currentQuestionIndex].example;
         feedbackBox.textContent = `Correct! ${example}`;
@@ -307,6 +318,11 @@ function checkNounsAnswer(answerButton) {
         nextButton.addEventListener("click", setNextNounsQuestion);
 
     } else {
+
+        // Adds styling to answer button when answer is incorrect
+        answerButton.style.backgroundColor = "red";
+        answerButton.style.border = "none";
+
         feedbackBox.innerHTML = "Incorrect!";
         // Increments the Tries each times a answer button is clicked
         incrementTries();
@@ -369,6 +385,10 @@ function checkAdjectivesAnswer(answerButton) {
 
     if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
 
+        // Adds styling to answer button when answer is correct
+        answerButton.style.backgroundColor = "green";
+        answerButton.style.border = "none";
+
         // Adds feedback to the user when answering correctly, displaying the example sentence
         example = adjectivesQuestions[currentQuestionIndex].example;
         feedbackBox.textContent = `Correct! ${example}`;
@@ -380,6 +400,11 @@ function checkAdjectivesAnswer(answerButton) {
         nextButton.classList.remove("hidden");
         nextButton.addEventListener("click", setNextAdjectivesQuestion);
     } else {
+
+        // Adds styling to answer button when answer is incorrect
+        answerButton.style.backgroundColor = "red";
+        answerButton.style.border = "none";
+
         feedbackBox.innerHTML = "Incorrect!";
         // Increments the Tries each times a answer button is clicked
         incrementTries();
