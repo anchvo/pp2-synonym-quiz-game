@@ -180,12 +180,12 @@ function loadGame(gameType) {
  */
 function displayVerbsQuestions() {
 
-    if (currentQuestionIndex === verbsQuestions.length) {
+     if (currentQuestionIndex >= verbsQuestions.length) {
         questionBox.classList.add("hidden");
         gameBox.classList.add("hidden");
         currentCategory = "verb-category";
         finishCategory(currentCategory);
-    } else {
+    } else { 
 
         gameBox.innerHTML = "";
 
@@ -206,9 +206,13 @@ function displayVerbsQuestions() {
             });
 
             gameBox.appendChild(answerButton);
+
+            // Console Log for checking
+            console.log(currentQuestionIndex);
         })
     }
 }
+
 
 /**
  * Checks if the chosen answer button of the current question in the verbs category is correct or not,
@@ -219,7 +223,7 @@ function checkVerbsAnswer(answerButton) {
     answer = answerButton.innerHTML;
     answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (currentQuestionIndex === verbsQuestions.length) {
+    if (currentQuestionIndex >= verbsQuestions.length) {
         questionBox.classList.add("hidden");
         gameBox.classList.add("hidden");
         currentCategory = "verb-category";
@@ -263,7 +267,7 @@ function checkVerbsAnswer(answerButton) {
  */
 function setNextVerbsQuestion() {
 
-    if (currentQuestionIndex === verbsQuestions.length) {
+    if (currentQuestionIndex >= verbsQuestions.length) {
         currentCategory = "verb-category";
         questionBox.classList.add("hidden");
         gameBox.classList.add("hidden");
@@ -281,6 +285,8 @@ function setNextVerbsQuestion() {
         console.log(scoreTries);
         console.log(currentQuestionIndex);
     }
+    //Console Logs for Checking
+    console.log(currentCategory);
 }
 
 /**

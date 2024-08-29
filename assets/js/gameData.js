@@ -1,7 +1,7 @@
 // Questions for verbs category
 let verbsQuestions = [
 
-    // Tier One question
+    // Tier One question / Index 0
     {
         question: "understand",
         description: "grasp",
@@ -11,7 +11,7 @@ let verbsQuestions = [
         "I comprehend the causes of World War One."`
     },
 
-    // Tier Two question
+    // Tier Two question / Index 1
     {
         question: "imply",
         description: "signify, display",
@@ -21,7 +21,7 @@ let verbsQuestions = [
         "His expression indicated his frustration; Her tone implied she thought I had stolen the last piece of cake."`
     },
 
-    // Tier Three question
+    // Tier Three question / Index 2
     {
         question: "argue",
         description: "verbally fight",
@@ -35,7 +35,7 @@ let verbsQuestions = [
 
 let nounsQuestions = [
 
-    // Tier One question
+    // Tier One question / Index 0
     {
         question: "decision",
         description: "conclusion",
@@ -45,7 +45,7 @@ let nounsQuestions = [
         "I’ve made a resolution to take care of myself."`
     },
 
-    // Tier Two question
+    // Tier Two question / Index 1
     {
         question: "competition",
         description: "challenge",
@@ -55,7 +55,7 @@ let nounsQuestions = [
         "The baking contest was a big deal."`
     },
 
-    // Tier Three question
+    // Tier Three question / Index 2
     {
         question: "courage",
         description: "boldness, braveness",
@@ -68,17 +68,17 @@ let nounsQuestions = [
 
 let adjectivesQuestions = [
 
-    // Tier One question
+    // Tier One question / Index 0
     {
         question: "observant",
         description: "alert, watchful",
         answers: ["indifferent", "savvy", "perceptive", "logical"],
-        correctAnswer: 3,
+        correctAnswer: 2,
         example: `Perceptive describes someone or something showing insight and understanding. 
         "He was highly perceptive and sensitive to everything around him."`
     },
 
-    // Tier Two question
+    // Tier Two question / Index 1
     {
         question: "jealous",
         description: "desirous",
@@ -88,7 +88,7 @@ let adjectivesQuestions = [
         "He has such great hair, I’m so envious."`
     },
 
-    // Tier Three question
+    // Tier Three question / Index 2
     {
         question: "cautious",
         description: "careful, guarded",
