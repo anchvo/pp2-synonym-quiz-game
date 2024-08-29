@@ -15,6 +15,8 @@ let gameArea = document.getElementById("game-area");
 let userInput = document.getElementById("user-input");
 let userCredentials = document.getElementById("user-credentials-box");
 let questionBox = document.getElementById("question-box");
+let questionSynonym = document.getElementById("question-synonym");
+let synonymDescription = document.getElementById("synonym-description");
 let scoreBox = document.getElementById("score-box");
 let infoBox = document.getElementById("info-box");
 let infoProgress = document.getElementById("current-progress");
@@ -118,7 +120,9 @@ function displayVerbsQuestions() {
     gameBox.innerHTML = "";
 
     currentQuestion = verbsQuestions[currentQuestionIndex];
-    questionBox.innerHTML = currentQuestion.question;
+    questionSynonym.innerHTML = currentQuestion.question;
+
+    synonymDescription.innerHTML = currentQuestion.description;
 
     currentQuestion.answers.forEach((answer) => {
         let answerButton = document.createElement("button");
@@ -194,7 +198,7 @@ function displayNounsQuestions() {
     gameBox.innerHTML = "";
 
     let currentQuestion = nounsQuestions[currentQuestionIndex];
-    questionBox.innerHTML = currentQuestion.question;
+    questionSynonym.innerHTML = currentQuestion.question;
 
     currentQuestion.answers.forEach((answer) => {
         let answerButton = document.createElement("button");
@@ -261,7 +265,7 @@ function displayAdjectivesQuestions() {
     gameBox.innerHTML = "";
 
     let currentQuestion = adjectivesQuestions[currentQuestionIndex];
-    questionBox.innerHTML = currentQuestion.question;
+    questionSynonym.innerHTML = currentQuestion.question;
 
     currentQuestion.answers.forEach((answer) => {
         let answerButton = document.createElement("button");
