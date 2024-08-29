@@ -23,9 +23,9 @@ let tierProgress = document.getElementById("tier-progress");
 let triesScore = document.getElementById("tries-score");
 let infoOptions = document.getElementById("user-options");
 let gameBox = document.getElementById("game-box");
-let optionsBox = document.getElementById("options-buttons")
+let optionsBox = document.getElementById("options-buttons");
 let nextButton = document.getElementById("next-button");
-let retryButton = document.getElementById("retry-button");
+let continueButton = document.getElementById("continue-button");
 let feedbackBox = document.getElementById("feedback-box");
 
 // Variables with preset (undefined) value which will be set in functions later and have to be reset for another game loop
@@ -36,10 +36,6 @@ let currentQuestionIndex = 0;
 let currentQuestion;
 let currentCategory;
 let example;
-/*
-// Sets variable to create buttons that hold answer options
-let answerButton;
-*/
 // Set variable to count the score for finished category tiers
 let scoreTiers = 0;
 // Set variable to count the score for number of tries
@@ -88,6 +84,72 @@ function startGame() {
 
     }
 }
+
+function clearGame() {
+
+    optionsBox.classList.add("hidden");
+
+    gameType;
+    currentQuestion;
+    currentQuestionIndex = 0;
+    answerIndex = 0;
+    example;
+    currentCategory;
+    scoreTiers = 0;
+    scoreTries = 0;
+
+    continueGame();
+}
+
+function continueGame() {
+
+    infoBox.classList.add("hidden");
+
+    if (finishedCategories.includes("Verbs")) {
+        categoriesArea.classList.remove("hidden");
+        verbsButton.classList.add("hidden");
+
+        for (let button of categoryButtons) {
+            button.addEventListener("click", function () {
+
+                // Sets variable gameType to allow to refer to different categories
+                gameType = this.getAttribute("data-type");
+                loadGame(gameType);
+            })
+        }
+    }
+
+    if (finishedCategories.includes("Nouns")) {
+        categoriesArea.classList.remove("hidden");
+        nounsButton.classList.add("hidden");
+
+        for (let button of categoryButtons) {
+            button.addEventListener("click", function () {
+
+                // Sets variable gameType to allow to refer to different categories
+                gameType = this.getAttribute("data-type");
+                loadGame(gameType);
+            })
+        }
+    }
+
+    if (finishedCategories.includes("Adjectives")) {
+        categoriesArea.classList.remove("hidden");
+        adjectivesButton.classList.add("hidden");
+
+        for (let button of categoryButtons) {
+            button.addEventListener("click", function () {
+
+                // Sets variable gameType to allow to refer to different categories
+                gameType = this.getAttribute("data-type");
+                loadGame(gameType);
+            })
+        }
+    }
+
+
+}
+
 /** Removes hidden class from the game area and hides the category buttons, 
  * loading the respective functions for each category questions by reading the game-type chosen with buttons in startGame function
  */
@@ -374,10 +436,6 @@ function finishFirstCategory(currentCategory) {
     scoreBox.classList.add("hidden");
     infoBox.classList.remove("hidden");
 
-
-
-    infoOptions.textContent = "Please choose your next category:";
-
     /* Checks if the current category is set for verbs so only the buttons for the other two categories are shown.
     Shows a congratulary message specific to the category to the user.
     */
@@ -387,18 +445,27 @@ function finishFirstCategory(currentCategory) {
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Verbs category!`;
 
+        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category
+        optionsBox.classList.remove("hidden");
+        nextButton.classList.add("hidden");
+        continueButton.classList.remove("hidden");
+        continueButton.addEventListener("click", clearGame);
+
     }
 
     /* Checks if the current category is set for nouns so only the buttons for the other two categories are shown.
     Shows a congratulary message specific to the category to the user.
     */
     if (currentCategory === "nouns-category") {
-        categoriesArea.classList.remove("hidden");
-        nounsButton.classList.add("hidden");
         finishedCategories.push("Nouns");
-
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Nouns category!`;
+
+        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category
+        optionsBox.classList.remove("hidden");
+        nextButton.classList.add("hidden");
+        continueButton.classList.remove("hidden");
+        continueButton.addEventListener("click", clearGame);
 
     }
 
@@ -406,35 +473,16 @@ function finishFirstCategory(currentCategory) {
     Shows a congratulary message specific to the category to the user.
     */
     if (currentCategory === "adjectives-category") {
-        categoriesArea.classList.remove("hidden");
-        adjectivesButton.classList.add("hidden");
         finishedCategories.push("Adjectives");
 
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Adjectives category!`;
 
-    }
-}
+        // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category
+        optionsBox.classList.remove("hidden");
+        nextButton.classList.add("hidden");
+        continueButton.classList.remove("hidden");
+        continueButton.addEventListener("click", clearGame);
 
-function clearGame() {
-    
-    gameType;
-    currentQuestion;
-    currentQuestionIndex = 0;
-    example;
-    currentCategory;
-    scoreTiers = 0;
-    scoreTries = 0;
-
-    continueGame();
-}
-
-function continueGame() {
-
-    if (finishedCategories.includes("Verbs")) {
-        categoriesArea.classList.remove("hidden");
-        verbsButton.classList.add("hidden");
-
-        startGame();
     }
 }
