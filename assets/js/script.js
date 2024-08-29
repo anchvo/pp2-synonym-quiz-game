@@ -219,7 +219,7 @@ function checkVerbsAnswer(answerButton) {
     if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
-        answerButton.style.backgroundColor = "green";
+        answerButton.style.backgroundColor = "#289D8F";
         answerButton.style.border = "none";
 
         // Adds feedback to the user when answering correctly, displaying the example sentence
@@ -237,7 +237,7 @@ function checkVerbsAnswer(answerButton) {
     } else {
 
         // Adds styling to answer button when answer is incorrect
-        answerButton.style.backgroundColor = "red";
+        answerButton.style.backgroundColor = "#E76F51";
         answerButton.style.border = "none";
 
         feedbackBox.innerHTML = "Incorrect!";
@@ -303,7 +303,7 @@ function checkNounsAnswer(answerButton) {
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
-        answerButton.style.backgroundColor = "green";
+        answerButton.style.backgroundColor = "#289D8F";
         answerButton.style.border = "none";
 
         // Adds feedback to the user when answering correctly, displaying the example sentence
@@ -320,7 +320,7 @@ function checkNounsAnswer(answerButton) {
     } else {
 
         // Adds styling to answer button when answer is incorrect
-        answerButton.style.backgroundColor = "red";
+        answerButton.style.backgroundColor = "#E76F51";
         answerButton.style.border = "none";
 
         feedbackBox.innerHTML = "Incorrect!";
@@ -386,7 +386,7 @@ function checkAdjectivesAnswer(answerButton) {
     if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
-        answerButton.style.backgroundColor = "green";
+        answerButton.style.backgroundColor = "#289D8F";
         answerButton.style.border = "none";
 
         // Adds feedback to the user when answering correctly, displaying the example sentence
@@ -402,7 +402,7 @@ function checkAdjectivesAnswer(answerButton) {
     } else {
 
         // Adds styling to answer button when answer is incorrect
-        answerButton.style.backgroundColor = "red";
+        answerButton.style.backgroundColor = "#E76F51";
         answerButton.style.border = "none";
 
         feedbackBox.innerHTML = "Incorrect!";
