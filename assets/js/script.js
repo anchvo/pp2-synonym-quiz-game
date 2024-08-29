@@ -207,7 +207,7 @@ function displayVerbsQuestions() {
         synonymDescription.innerHTML = currentQuestion.description;
 
         /* let index = availableQuestions.indexOf(currentQuestionIndex);
-        availableQuestions.splice(index, 1);*/ 
+        availableQuestions.splice(index, 1);*/
 
         currentQuestion.answers.forEach((answer) => {
             let answerButton = document.createElement("button");
@@ -495,9 +495,6 @@ function incrementProgress() {
     scoreTiers++;
     tierProgress.innerHTML = scoreTiers;
 
-    /* let oldProgress = parseInt(document.getElementById("tier-progress").innerText);
-    document.getElementById("tier-progress").innerText = ++oldProgress;*/
-
 }
 
 /**
@@ -508,9 +505,6 @@ function incrementTries() {
     scoreTries++;
     triesScore.innerHTML = scoreTries;
 
-    /* let oldTries = parseInt(document.getElementById("tries-score").innerText);
-    document.getElementById("tries-score").innerText = ++oldTries; */
-
 }
 
 /**
@@ -519,14 +513,14 @@ function incrementTries() {
  */
 function finishCategory(currentCategory) {
 
-    gameArea.classList.add("hidden");
+    gameBox.classList.add("hidden");
     questionBox.classList.add("hidden");
     scoreBox.classList.add("hidden");
     infoBox.classList.remove("hidden");
 
 
     /* Checks if the current category is set for verbs so the congratulary message is shown for the right category.
-    */
+     */
 
     if (currentCategory === "verbs-category") {
         finishedCategories.push("Verbs");
@@ -542,10 +536,9 @@ function finishCategory(currentCategory) {
         });
 
     }
-
     /* Checks if the current category is set for nouns so the congratulary message is shown for the right category.
-    */
-    if (currentCategory === "nouns-category") {
+     */
+    else if (currentCategory === "nouns-category") {
         finishedCategories.push("Nouns");
         infoProgress.textContent = `Congratulations! 
         You finished all ${scoreTiers} tiers of the Nouns category!`;
@@ -554,12 +547,12 @@ function finishCategory(currentCategory) {
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
-        // continueButton.addEventListener("click", clearGame);
+        continueButton.addEventListener("click", clearGame);
     }
 
     /* Checks if the current category is set for adjectives so the congratulary message is shown for the right category.
-    */
-    if (currentCategory === "adjectives-category") {
+     */
+    else if (currentCategory === "adjectives-category") {
         finishedCategories.push("Adjectives");
 
         infoProgress.textContent = `Congratulations! 
@@ -569,11 +562,16 @@ function finishCategory(currentCategory) {
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
-        /*continueButton.addEventListener("click", () => {
+        continueButton.addEventListener("click", () => {
             clearGame(continueButton);
-        });*/
+        });
 
     }
+
+    optionsBox.classList.remove("hidden");
+    nextButton.classList.add("hidden");
+    continueButton.classList.remove("hidden");
+
 }
 
 function clearGame() {
@@ -595,14 +593,3 @@ function clearGame() {
 
     continueGame();
 }
-
-
-
-/* Code that has been tried but did not work. Unsure if (partly) needed again so parked here in the comments.
-    if (currentQuestionIndex >= verbsQuestions.length) {
-        currentCategory = "verbs-category";
-        optionsBox.classList.remove("hidden");
-        continueButton.classList.remove("hidden");
-        continueButton.addEventListener("click", finishCategory(currentCategory));
-    }
-*/
