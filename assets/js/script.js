@@ -34,8 +34,13 @@ let gameType;
 // Sets variable to count the different questions and allows to loop through each of them
 let currentQuestionIndex = 0;
 let currentQuestion;
+
+let availableQuestions = [];
 let currentCategory;
 let example;
+
+let answer;
+let answerIndex;
 // Set variable to count the score for finished category tiers
 let scoreTiers = 0;
 // Set variable to count the score for number of tries
@@ -83,22 +88,6 @@ function startGame() {
         })
 
     }
-}
-
-function clearGame() {
-
-    optionsBox.classList.add("hidden");
-
-    gameType;
-    currentQuestion;
-    currentQuestionIndex = 0;
-    answerIndex = 0;
-    example;
-    currentCategory;
-    scoreTiers = 0;
-    scoreTries = 0;
-
-    continueGame();
 }
 
 function continueGame() {
@@ -183,6 +172,7 @@ function loadGame(gameType) {
     gameArea.classList.remove("hidden");
     optionsBox.classList.add("hidden");
     categoriesArea.classList.add("hidden");
+    infoBox.classList.add("hidden");
 
     if (gameType === "verbs") {
         displayVerbsQuestions();
@@ -203,28 +193,32 @@ function loadGame(gameType) {
  */
 function displayVerbsQuestions() {
 
-    if (currentQuestionIndex >= verbsQuestions.length) {
+    if (currentQuestionIndex === verbsQuestions.length) {
         currentCategory = "verbs-category";
         finishCategory(currentCategory);
+    } else {
+
+        gameBox.innerHTML = "";
+
+        currentQuestion = verbsQuestions[currentQuestionIndex];
+        questionSynonym.innerHTML = currentQuestion.question;
+
+        synonymDescription.innerHTML = currentQuestion.description;
+
+        let index=availableQuestions.indexOf(currentQuestionIndex);
+        availableQuestions.splice(index, 1);
+
+        currentQuestion.answers.forEach((answer) => {
+            let answerButton = document.createElement("button");
+            answerButton.classList.add("answer-buttons");
+            answerButton.innerHTML = answer;
+            answerButton.addEventListener("click", () => {
+                checkVerbsAnswer(answerButton);
+            });
+
+            gameBox.appendChild(answerButton);
+        })
     }
-
-    gameBox.innerHTML = "";
-
-    currentQuestion = verbsQuestions[currentQuestionIndex];
-    questionSynonym.innerHTML = currentQuestion.question;
-
-    synonymDescription.innerHTML = currentQuestion.description;
-
-    currentQuestion.answers.forEach((answer) => {
-        let answerButton = document.createElement("button");
-        answerButton.classList.add("answer-buttons");
-        answerButton.innerHTML = answer;
-        answerButton.addEventListener("click", () => {
-            checkVerbsAnswer(answerButton);
-        });
-
-        gameBox.appendChild(answerButton);
-    })
 }
 
 /**
@@ -234,14 +228,12 @@ function displayVerbsQuestions() {
 function checkVerbsAnswer(answerButton) {
 
     // optionsBox.innerHTML = "";
-    let answer = answerButton.innerHTML;
-    let answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
+    answer = answerButton.innerHTML;
+    answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (answerIndex >= verbsQuestions.length) {
+    if (currentQuestionIndex === verbsQuestions.length) {
         currentCategory = "verbs-category";
-        optionsBox.classList.remove("hidden");
-        continueButton.classList.remove("hidden");
-        continueButton.addEventListener("click", finishCategory(currentCategory));
+        finishCategory(currentCategory);
     } else if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
@@ -281,11 +273,20 @@ function checkVerbsAnswer(answerButton) {
  */
 function setNextVerbsQuestion() {
 
-    feedbackBox.innerHTML = "";
-    incrementProgress();
-    optionsBox.classList.add("hidden");
-    currentQuestionIndex++;
-    displayVerbsQuestions();
+    if (currentQuestionIndex === verbsQuestions.length) {
+        currentCategory = "verbs-category";
+        finishCategory(currentCategory);
+    } else {
+
+        feedbackBox.innerHTML = "";
+        incrementProgress();
+        optionsBox.classList.add("hidden");
+        currentQuestionIndex++;
+        displayVerbsQuestions();
+        console.log(scoreTiers);
+        console.log(scoreTries);
+        console.log(currentQuestionIndex);
+    }
 }
 
 /**
@@ -323,8 +324,8 @@ function displayNounsQuestions() {
  * adds feedback for each result to the user and creates buttons to either continue to next question or try again
  */
 function checkNounsAnswer(answerButton) {
-    let answer = answerButton.innerHTML;
-    let answerIndex = nounsQuestions[currentQuestionIndex].answers.indexOf(answer);
+    answer = answerButton.innerHTML;
+    answerIndex = nounsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
 
@@ -406,8 +407,8 @@ function displayAdjectivesQuestions() {
  * adds feedback for each result to the user and creates buttons to either continue to next question or try again
  */
 function checkAdjectivesAnswer(answerButton) {
-    let answer = answerButton.innerHTML;
-    let answerIndex = adjectivesQuestions[currentQuestionIndex].answers.indexOf(answer);
+    answer = answerButton.innerHTML;
+    answerIndex = adjectivesQuestions[currentQuestionIndex].answers.indexOf(answer);
 
     if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
 
@@ -485,9 +486,11 @@ function incrementTries() {
  */
 function finishCategory(currentCategory) {
 
+    gameArea.classList.add("hidden");
     questionBox.classList.add("hidden");
     scoreBox.classList.add("hidden");
     infoBox.classList.remove("hidden");
+
 
     /* Checks if the current category is set for verbs so only the buttons for the other two categories are shown.
     Shows a congratulary message specific to the category to the user.
@@ -502,7 +505,8 @@ function finishCategory(currentCategory) {
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
-        continueButton.addEventListener("click", clearGame);
+        continueButton.addEventListener("click", clearGame());
+
 
     }
 
@@ -518,8 +522,7 @@ function finishCategory(currentCategory) {
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
-        continueButton.addEventListener("click", clearGame);
-
+        // continueButton.addEventListener("click", clearGame);
     }
 
     /* Checks if the current category is set for adjectives so only the buttons for the other two categories are shown.
@@ -535,7 +538,40 @@ function finishCategory(currentCategory) {
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
-        continueButton.addEventListener("click", clearGame);
+        /*continueButton.addEventListener("click", () => {
+            clearGame(continueButton);
+        });*/
 
     }
 }
+
+function clearGame() {
+
+    optionsBox.classList.add("hidden");
+
+    gameType;
+    currentQuestion;
+    currentQuestionIndex = 0;
+    answerIndex = 0;
+    example;
+    currentCategory;
+    scoreTiers = 0;
+    scoreTries = 0;
+
+    console.log(scoreTiers);
+    console.log(scoreTries);
+    console.log(currentQuestionIndex);
+
+    continueGame();
+}
+
+
+
+/* Code that has been tried but did not work. Unsure if (partly) needed again so parked here in the comments.
+    if (currentQuestionIndex >= verbsQuestions.length) {
+        currentCategory = "verbs-category";
+        optionsBox.classList.remove("hidden");
+        continueButton.classList.remove("hidden");
+        continueButton.addEventListener("click", finishCategory(currentCategory));
+    }
+*/
