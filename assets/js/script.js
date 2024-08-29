@@ -359,7 +359,7 @@ function finishFirstCategory(currentCategory) {
     
 
     
-    infoOptions.textContent= "Please choose your next category: ";
+    infoOptions.textContent= "Please choose your next category:";
 
     /* Checks if the current category is set for verbs so only the buttons for the other two categories are shown.
     Shows a congratulary message specific to the category to the user.
@@ -369,7 +369,8 @@ function finishFirstCategory(currentCategory) {
         categoriesArea.classList.remove("hidden");
         verbsButton.classList.add("hidden");
         finishedCategories.push("Verbs");
-        infoProgress.textContent = "Congratulations! You finished all Tiers of the Verbs Category!";
+        infoProgress.textContent = `Congratulations! 
+        You finished all ${scoreTiers} tiers of the Verbs category!`;
 
         /*
         for (nounsButton; adjectivesButton;) {
@@ -394,7 +395,8 @@ function finishFirstCategory(currentCategory) {
         nounsButton.classList.add("hidden");
         finishedCategories.push("Nouns");
 
-        infoProgress.textContent = "Congratulations! You finished all Tiers of the Nouns Category!";
+        infoProgress.textContent = `Congratulations! 
+        You finished all ${scoreTiers} tiers of the Nouns category!`;
 
     }
 
@@ -406,7 +408,8 @@ function finishFirstCategory(currentCategory) {
         adjectivesButton.classList.add("hidden");
         finishedCategories.push("Adjectives");
 
-        infoProgress.textContent = "Congratulations! You finished all Tiers of the Adjectives Category!";
+        infoProgress.textContent = `Congratulations! 
+        You finished all ${scoreTiers} tiers of the Adjectives category!`;
 
     }
 }
