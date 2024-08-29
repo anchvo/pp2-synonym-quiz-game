@@ -1,10 +1,10 @@
-// Game Buttons / Variables
+// Game Buttons / Static Variables
 let startGameButton = document.getElementById("start-game-btn");
 let answerButtons = document.getElementsByClassName("answer-buttons");
 let categoryButtons = document.getElementsByClassName("category-buttons");
 
 
-// DOM Elements / Variables
+// DOM Elements / Static Variables
 let startArea = document.getElementById("start-area");
 let categoriesArea = document.getElementById("game-categories");
 let verbsButton = document.getElementById("verbs-button");
@@ -27,11 +27,19 @@ let nextButton = document.getElementById("next-button");
 let retryButton = document.getElementById("retry-button");
 let feedbackBox = document.getElementById("feedback-box");
 
+// Variables with preset (undefined) value which will be set in functions later
 // Sets Variable to count the different questions and allows to loop through each of them
 let currentQuestionIndex = 0;
-
+let currentQuestion;
 // Set variable as array to put finished categories in
 let finishedCategories = [];
+// Set variable to count the score for finished category tiers
+let scoreTiers = 0;
+// Set variable to count the score for number of tries
+let scoreTries = 0;
+
+
+
 
 
 // Event Listeners
@@ -109,7 +117,7 @@ function displayVerbsQuestions() {
 
     gameBox.innerHTML = "";
 
-    let currentQuestion = verbsQuestions[currentQuestionIndex];
+    currentQuestion = verbsQuestions[currentQuestionIndex];
     questionBox.innerHTML = currentQuestion.question;
 
     currentQuestion.answers.forEach((answer) => {
@@ -318,11 +326,11 @@ function setNextAdjectivesQuestion() {
  */
 function incrementProgress() {
 
-    /* let tierProgress = 0;
-    tierProgress.innerHTML = ++tierProgress; */ 
+    scoreTiers++;
+    tierProgress.innerHTML = scoreTiers;
 
-    let oldProgress = parseInt(document.getElementById("tier-progress").innerText);
-    document.getElementById("tier-progress").innerText = ++oldProgress;
+    /* let oldProgress = parseInt(document.getElementById("tier-progress").innerText);
+    document.getElementById("tier-progress").innerText = ++oldProgress;*/
     
 }
 
@@ -331,8 +339,11 @@ function incrementProgress() {
  */
 function incrementTries() {
 
-    let oldTries = parseInt(document.getElementById("tries-score").innerText);
-    document.getElementById("tries-score").innerText = ++oldTries;
+    scoreTries++;
+    triesScore.innerHTML = scoreTries;
+    
+    /* let oldTries = parseInt(document.getElementById("tries-score").innerText);
+    document.getElementById("tries-score").innerText = ++oldTries; */
 
 }
 
