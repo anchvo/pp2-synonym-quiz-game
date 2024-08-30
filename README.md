@@ -160,7 +160,30 @@ As a User:
 
 ## Testing
 
+- The site was tested and confirmed to be working in different browsers: Firefox, Brave, Safari. 
+- The site was tested on different screen sizes and confirmed to be responsive, good looking and functional via Devtools and the device toolbar.
+- The site was tested for readability and easy understanding on all webpages.
+- The links across all webpages were tested for functionality and confirmed to be opening either in the same document (internal navigation links) or in a new tab (external links).
+
 ### Validator Testing
+
+-__HTML__
+
+- No errors were returned when passing through the official [W3C validator](https://validator.w3.org/nu/?doc=https%3A%2F%2Fanchvo.github.io%2Fpp2-synonym-quiz-game%2Findex.html).
+
+-__CSS__
+
+- No errors were found when passing through the official [Jigsaw validator] (http://jigsaw.w3.org/css-validator/validator?lang=en&profile=css3svg&uri=https%3A%2F%2Fanchvo.github.io%2Fpp2-synonym-quiz-game%2Fassets%2Fcss%2Fstyle.css&usermedium=all&vextwarning=&warning=1).
+
+-__JavaScript__
+
+- No errors were found when passing the code through [jshint](https://jshint.com/).
+
+-__Accessibility__
+
+- Lighthouse Testing
+
+![Lighthouse Testing](assets/documentation/testing/lighthouse-testing.png).
 
 ### Bugs
 
@@ -194,13 +217,15 @@ As a User:
 
 ## Credits
 
-### Disclaimer
+### Notes
+
+- This project was submitted with some unfixed bugs that prevent the page from its full functionality. Until submission, it was tried to fix the bugs by all means necessary but it was unsuccessful. It was realised, that the project might have been a bit ambitious for the first JavaScript project and with being new to the language, but it should be stated that everything was finished to the best of ability.
 
 ### Help, Advice and Inspiration
 
 - Martina Terlevic - my wonderful mentor
 - My sister
-- Holly and Thomas from tutor support
+- Holly and Thomas from tutor support for their quick help
 
 ### Code
 

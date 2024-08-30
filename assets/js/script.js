@@ -53,11 +53,11 @@ let closeInstructionsModal = document.getElementById("close-instructions");
 
 openInstructionsModal.onclick = function () {
     instructionsModal.style.display = "block";
-}
+};
 
 closeInstructionsModal.onclick = function () {
     instructionsModal.style.display = "none";
-}
+}; 
 
 // Event Listeners
 // Sets the startGame function to the event that the startGameButton is clicked
@@ -83,7 +83,7 @@ function startGame() {
             // Sets variable gameType to allow to refer to different categories
             gameType = this.getAttribute("data-type");
             loadGame(gameType);
-        })
+        });
 
     }
 }
@@ -152,7 +152,7 @@ function continueGame() {
                 // Sets variable gameType to allow to refer to different categories
                 gameType = this.getAttribute("data-type");
                 loadGame(gameType);
-            })
+            });
         }
     }
 }
@@ -209,10 +209,7 @@ function displayVerbsQuestions() {
             });
 
             gameBox.appendChild(answerButton);
-
-            // Console Log for checking
-            console.log(currentQuestionIndex);
-        })
+        });
     }
 }
 
@@ -269,14 +266,6 @@ function setNextVerbsQuestion() {
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayVerbsQuestions();
-
-    // Console Logs for Checking 
-    console.log(scoreTiers);
-    console.log(scoreTries);
-    console.log(currentQuestionIndex);
-    //}
-    //Console Logs for Checking
-    console.log(currentCategory);
 }
 
 /**
@@ -306,7 +295,7 @@ function displayNounsQuestions() {
             });
 
             gameBox.appendChild(answerButton);
-        })
+        });
     }
 }
 
@@ -361,11 +350,6 @@ function setNextNounsQuestion() {
     optionsBox.classList.add("hidden");
     currentQuestionIndex++;
     displayNounsQuestions();
-
-    // Console Logs for Checking 
-    console.log(scoreTiers);
-    console.log(scoreTries);
-    console.log(currentQuestionIndex);
 }
 
 /**
@@ -394,7 +378,7 @@ function displayAdjectivesQuestions() {
             });
 
             gameBox.appendChild(answerButton);
-        })
+        });
     }
 }
 
@@ -447,11 +431,6 @@ function setNextAdjectivesQuestion() {
     currentQuestionIndex++;
     displayAdjectivesQuestions();
     incrementProgress();
-
-    // Console Logs for Checking 
-    console.log(scoreTiers);
-    console.log(scoreTries);
-    console.log(currentQuestionIndex);
 }
 
 /**
@@ -557,12 +536,6 @@ function clearGame() {
     currentCategory = "";
     scoreTiers = 0;
     scoreTries = 0;
-
-    // Console Logs for Checking
-    console.log(scoreTiers);
-    console.log(scoreTries);
-    console.log(currentQuestionIndex);
-    console.log(finishedCategories);
 
     continueGame();
 }

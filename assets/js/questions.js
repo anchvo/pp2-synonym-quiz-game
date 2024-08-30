@@ -31,7 +31,7 @@ let verbsQuestions = [
         "He quibbled with the waitress over the exact definition of ketchup."`
     },
 
-]
+];
 
 let nounsQuestions = [
 
@@ -64,7 +64,7 @@ let nounsQuestions = [
         example: `Tenacity refers to holding fast and being persistent, no matter the obstacles. 
         "Neither the soldiers nor their officers lack tenacity under fire."`
     },
-]
+];
 
 let adjectivesQuestions = [
 
@@ -97,4 +97,4 @@ let adjectivesQuestions = [
         example: `Judicious refers to using or showing good and thoughtful judgment.
         "We are going to be very judicious about the use of that video." `
     },
-]
+];
