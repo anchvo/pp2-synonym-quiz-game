@@ -160,7 +160,6 @@ button {
   max-width: 200px;
   max-height: 200px;
   background-color: #264653;
-  /*rgba(38, 70, 83, 0.8)*/
   color: white;
 
 }
@@ -203,11 +202,6 @@ button {
   font-weight: bold;
 }
 
-/*
-.correct-answer:active {
-  background-color: #2A9D8F;
-}
-  */
 #feedback-box {
   display: block;
   justify-content: center;
