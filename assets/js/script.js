@@ -98,55 +98,59 @@ function continueGame() {
     questionBox.classList.add("hidden");
     gameBox.classList.add("hidden");
 
-    infoOptions.textContent = "Please choose your next category:";
+    if (finishedCategories.includes("Verb" && "Adjective" && "Noun")) {
+        endGame();
+    } else {
 
-    if (finishedCategories.includes("Verb")) {
+        infoOptions.textContent = "Please choose your next category:";
 
-        categoriesArea.classList.remove("hidden");
-        verbsButton.classList.add("hidden");
+        if (finishedCategories.includes("Verb")) {
 
-        if (finishedCategories.includes("Verb" && "Noun")) {
-            nounsButton.classList.add("hidden");
-
-        } else if (finishedCategories.includes("Verb" && "Adjective")) {
-            adjectivesButton.classList.add("hidden");
-        }
-
-    }
-
-    if (finishedCategories.includes("Noun")) {
-        categoriesArea.classList.remove("hidden");
-        nounsButton.classList.add("hidden");
-
-        if (finishedCategories.includes("Noun" && "Verb")) {
+            categoriesArea.classList.remove("hidden");
             verbsButton.classList.add("hidden");
 
-        } else if (finishedCategories.includes("Noun" && "Adjective")) {
-            adjectivesButton.classList.add("hidden");
+            if (finishedCategories.includes("Verb" && "Noun")) {
+                nounsButton.classList.add("hidden");
+
+            } else if (finishedCategories.includes("Verb" && "Adjective")) {
+                adjectivesButton.classList.add("hidden");
+            }
+
         }
-    }
 
-    if (finishedCategories.includes("Adjective")) {
-        categoriesArea.classList.remove("hidden");
-        adjectivesButton.classList.add("hidden");
-
-        if (finishedCategories.includes("Adjective" && "Noun")) {
+        if (finishedCategories.includes("Noun")) {
+            categoriesArea.classList.remove("hidden");
             nounsButton.classList.add("hidden");
 
-        } else if (finishedCategories.includes("Adjective" && "Verb")) {
-            verbsButton.classList.add("hidden");
+            if (finishedCategories.includes("Noun" && "Verb")) {
+                verbsButton.classList.add("hidden");
+
+            } else if (finishedCategories.includes("Noun" && "Adjective")) {
+                adjectivesButton.classList.add("hidden");
+            }
+        }
+
+        if (finishedCategories.includes("Adjective")) {
+            categoriesArea.classList.remove("hidden");
+            adjectivesButton.classList.add("hidden");
+
+            if (finishedCategories.includes("Adjective" && "Noun")) {
+                nounsButton.classList.add("hidden");
+
+            } else if (finishedCategories.includes("Adjective" && "Verb")) {
+                verbsButton.classList.add("hidden");
+            }
+        }
+
+        for (let button of categoryButtons) {
+            button.addEventListener("click", function () {
+
+                // Sets variable gameType to allow to refer to different categories
+                gameType = this.getAttribute("data-type");
+                loadGame(gameType);
+            })
         }
     }
-
-    for (let button of categoryButtons) {
-        button.addEventListener("click", function () {
-
-            // Sets variable gameType to allow to refer to different categories
-            gameType = this.getAttribute("data-type");
-            loadGame(gameType);
-        })
-    }
-
 }
 
 /** Removes hidden class from the game area and hides the category buttons, 
@@ -527,6 +531,10 @@ function finishCategory(currentCategory) {
     }
 }
 
+/**
+ * Resets the variables to empty or starting values to allow another game loop. 
+ * Starts the continueGame function.
+ */
 function clearGame() {
 
     questionBox.classList.add("hidden");
@@ -548,4 +556,17 @@ function clearGame() {
     console.log(finishedCategories);
 
     continueGame();
+}
+
+function endGame() {
+    questionBox.innerHTML = "";
+
+    optionsBox.classList.remove("hidden");
+    questionBox.classList.add("hidden");
+    gameBox.classList.add("hidden");
+    scoreBox.classList.add("hidden");
+    infoBox.classList.remove("hidden");
+
+    infoProgress.textContent = "Congratulations! You finished all Categories! More questions and categories are coming soon!";
+
 }
