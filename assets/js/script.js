@@ -88,6 +88,11 @@ function startGame() {
     }
 }
 
+/** Removes hidden class from the category buttons and reads the values from the finishedCategories array,
+ * to show only the category buttons of unfinished categories. 
+ * The user can then choose another category.
+ * Adds listening event for clicking on a category button, and loading the loadGame function.
+ */
 function continueGame() {
 
     questionBox.classList.add("hidden");
@@ -559,6 +564,10 @@ function clearGame() {
     continueGame();
 }
 
+/**
+ * Runs when all categories are finished and respective values are stored in finishedCategories array. 
+ * Displays a congratulatory message to the user, signalling the end of the game.
+ */
 function endGame() {
     questionBox.innerHTML = "";
 
