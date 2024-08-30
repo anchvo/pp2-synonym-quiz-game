@@ -117,7 +117,7 @@ As a User:
 - The game page displays the questions and answers for the category that has been chosen before.
 - The page includes the question box, in which the question and a respective description is shown, that tells the user what he is looking for.
 - Below the question box, the progress box shows the user his current progress in form of advancement in the number of questions and the number of tries to find the right answer.
-- After, four different answers are shown in answer buttons, allowing the user to try and pick the correct one. 
+- After, four different answers are shown in answer buttons, allowing the user to try and pick the correct one. As the purpose of the quiz game is to be educational and not competitive, the user can try multiple times to find the correct answer instead of being locked out after an incorrect answer. 
 - If chosen incorrectly, the answer button will turn red and an information will display, informing the user that the answer was incorrect.
 - If chosen correctly, the answer button will turn green and an information will diplay, informing the user that the answer was correct and displaying a explanation and a example sentence for the correct answer.
 - Additionally, if chosen correctly, a next question button will appear, allowing the user to advance to the next question.

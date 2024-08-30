@@ -65,6 +65,7 @@ a {
 button {
   text-transform: uppercase;
   letter-spacing: 0.5px;
+  cursor: pointer;
 }
 
 /* Options and Category Buttons Styling*/
@@ -112,6 +113,7 @@ button {
 /* Opening the Modal Span */
 #open-instructions {
   padding-left: 20px;
+  cursor: pointer;
 }
 
 /* Modal Background */
