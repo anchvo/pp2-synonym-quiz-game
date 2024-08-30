@@ -34,9 +34,6 @@ let gameType;
 // Sets variable to count the different questions and allows to loop through each of them
 let currentQuestionIndex = 0;
 let currentQuestion;
-
-// Variable for possible questions array
-let availableQuestions = [];
 let currentCategory;
 let example;
 
@@ -95,6 +92,8 @@ function startGame() {
 
 function continueGame() {
 
+    questionBox.classList.add("hidden");
+    gameBox.classList.add("hidden");
     infoProgress.classList.add("hidden");
     questionBox.classList.add("hidden");
     gameBox.classList.add("hidden");
@@ -180,22 +179,18 @@ function loadGame(gameType) {
  */
 function displayVerbsQuestions() {
 
-     if (currentQuestionIndex >= verbsQuestions.length) {
+    gameBox.innerHTML = "";
+
+    if (currentQuestionIndex >= verbsQuestions.length) {
+        currentCategory = "verb-category";
         questionBox.classList.add("hidden");
         gameBox.classList.add("hidden");
-        currentCategory = "verb-category";
         finishCategory(currentCategory);
-    } else { 
-
-        gameBox.innerHTML = "";
+    } else {
 
         currentQuestion = verbsQuestions[currentQuestionIndex];
         questionSynonym.innerHTML = currentQuestion.question;
-
         synonymDescription.innerHTML = currentQuestion.description;
-
-        /* let index = availableQuestions.indexOf(currentQuestionIndex);
-        availableQuestions.splice(index, 1);*/
 
         currentQuestion.answers.forEach((answer) => {
             let answerButton = document.createElement("button");
@@ -223,12 +218,7 @@ function checkVerbsAnswer(answerButton) {
     answer = answerButton.innerHTML;
     answerIndex = verbsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (currentQuestionIndex >= verbsQuestions.length) {
-        questionBox.classList.add("hidden");
-        gameBox.classList.add("hidden");
-        currentCategory = "verb-category";
-        finishCategory(currentCategory);
-    } else if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
+    if (answerIndex === verbsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
         answerButton.style.backgroundColor = "#289D8F";
@@ -262,29 +252,21 @@ function checkVerbsAnswer(answerButton) {
 
 /**
  * After pressing the nextButton, the function clears the feedback and hides the button. 
- * It then loads the next question in the verbs category array. 
- * If the array of questions is at an end, the function calls another to show the info and choices at the end of the category.
+ * It then loads the next question in the verbs category array.
  */
 function setNextVerbsQuestion() {
 
-    if (currentQuestionIndex >= verbsQuestions.length) {
-        currentCategory = "verb-category";
-        questionBox.classList.add("hidden");
-        gameBox.classList.add("hidden");
-        finishCategory(currentCategory);
-    } else {
+    feedbackBox.innerHTML = "";
+    incrementProgress();
+    optionsBox.classList.add("hidden");
+    currentQuestionIndex++;
+    displayVerbsQuestions();
 
-        feedbackBox.innerHTML = "";
-        incrementProgress();
-        optionsBox.classList.add("hidden");
-        currentQuestionIndex++;
-        displayVerbsQuestions();
-
-        // Console Logs for Checking 
-        console.log(scoreTiers);
-        console.log(scoreTries);
-        console.log(currentQuestionIndex);
-    }
+    // Console Logs for Checking 
+    console.log(scoreTiers);
+    console.log(scoreTries);
+    console.log(currentQuestionIndex);
+    //}
     //Console Logs for Checking
     console.log(currentCategory);
 }
@@ -295,12 +277,12 @@ function setNextVerbsQuestion() {
  */
 function displayNounsQuestions() {
 
+    gameBox.innerHTML = "";
+
     if (currentQuestionIndex === nounsQuestions.length) {
         currentCategory = "noun-category";
         finishCategory(currentCategory);
     } else {
-
-        gameBox.innerHTML = "";
 
         currentQuestion = nounsQuestions[currentQuestionIndex];
         questionSynonym.innerHTML = currentQuestion.question;
@@ -325,14 +307,11 @@ function displayNounsQuestions() {
  * adds feedback for each result to the user and creates buttons to either continue to next question or try again
  */
 function checkNounsAnswer(answerButton) {
+
     answer = answerButton.innerHTML;
     answerIndex = nounsQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-
-    if (currentQuestionIndex === nounsQuestions.length) {
-        currentCategory = "noun-category";
-        finishCategory(currentCategory);
-    } else if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
+    if (answerIndex === nounsQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
         answerButton.style.backgroundColor = "#289D8F";
@@ -366,26 +345,19 @@ function checkNounsAnswer(answerButton) {
 /**
  * After pressing the nextButton, the function clears the feedback and hides the button. 
  * It then loads the next question in the nouns category array. 
- * If the array of questions is at an end, the function calls another to show the info and choices at the end of the category.
  */
 function setNextNounsQuestion() {
 
-    if (currentQuestionIndex === nounsQuestions.length) {
-        currentCategory = "noun-category";
-        finishCategory(currentCategory);
-    } else {
+    feedbackBox.innerHTML = "";
+    incrementProgress();
+    optionsBox.classList.add("hidden");
+    currentQuestionIndex++;
+    displayNounsQuestions();
 
-        feedbackBox.innerHTML = "";
-        incrementProgress();
-        optionsBox.classList.add("hidden");
-        currentQuestionIndex++;
-        displayNounsQuestions();
-
-        // Console Logs for Checking 
-        console.log(scoreTiers);
-        console.log(scoreTries);
-        console.log(currentQuestionIndex);
-    }
+    // Console Logs for Checking 
+    console.log(scoreTiers);
+    console.log(scoreTries);
+    console.log(currentQuestionIndex);
 }
 
 /**
@@ -394,13 +366,12 @@ function setNextNounsQuestion() {
  */
 function displayAdjectivesQuestions() {
 
+    gameBox.innerHTML = "";
+
     if (currentQuestionIndex === adjectivesQuestions.length) {
         currentCategory = "adjective-category";
         finishCategory(currentCategory);
     } else {
-
-        gameBox.innerHTML = "";
-
         currentQuestion = adjectivesQuestions[currentQuestionIndex];
         questionSynonym.innerHTML = currentQuestion.question;
 
@@ -427,10 +398,7 @@ function checkAdjectivesAnswer(answerButton) {
     answer = answerButton.innerHTML;
     answerIndex = adjectivesQuestions[currentQuestionIndex].answers.indexOf(answer);
 
-    if (currentQuestionIndex === adjectivesQuestions.length) {
-        currentCategory = "adjective-category";
-        finishCategory(currentCategory);
-    } else if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
+    if (answerIndex === adjectivesQuestions[currentQuestionIndex].correctAnswer) {
 
         // Adds styling to answer button when answer is correct
         answerButton.style.backgroundColor = "#289D8F";
@@ -463,26 +431,19 @@ function checkAdjectivesAnswer(answerButton) {
 /**
  * After pressing the nextButton, the function clears the feedback and hides the button. 
  * It then loads the next question in the adjectives category array. 
- * If the array of questions is at an end, the function calls another to show the info and choices at the end of the category.
  */
 function setNextAdjectivesQuestion() {
 
-    if (currentQuestionIndex === adjectivesQuestions.length) {
-        currentCategory = "adjective-category";
-        finishCategory(currentCategory);
-    } else {
+    feedbackBox.innerHTML = "";
+    optionsBox.classList.add("hidden");
+    currentQuestionIndex++;
+    displayAdjectivesQuestions();
+    incrementProgress();
 
-        feedbackBox.innerHTML = "";
-        optionsBox.classList.add("hidden");
-        currentQuestionIndex++;
-        displayAdjectivesQuestions();
-        incrementProgress();
-
-        // Console Logs for Checking 
-        console.log(scoreTiers);
-        console.log(scoreTries);
-        console.log(currentQuestionIndex);
-    }
+    // Console Logs for Checking 
+    console.log(scoreTiers);
+    console.log(scoreTries);
+    console.log(currentQuestionIndex);
 }
 
 /**
@@ -510,6 +471,8 @@ function incrementTries() {
  * Checks which category was chosen before and shows the choice buttons for the other two, then calls the loadGame function
  */
 function finishCategory(currentCategory) {
+
+    questionBox.innerHTML = "";
 
     optionsBox.classList.remove("hidden");
     questionBox.classList.add("hidden");
@@ -559,9 +522,7 @@ function finishCategory(currentCategory) {
         optionsBox.classList.remove("hidden");
         nextButton.classList.add("hidden");
         continueButton.classList.remove("hidden");
-        continueButton.addEventListener("click", () => {
-            clearGame(continueButton);
-        });
+        continueButton.addEventListener("click", clearGame);
 
     }
 }
