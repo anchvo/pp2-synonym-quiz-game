@@ -11,8 +11,6 @@ let nounsButton = document.getElementById("nouns-button");
 let adjectivesButton = document.getElementById("adjectives-button");
 let gameMenu = document.getElementById("game-menu");
 let gameArea = document.getElementById("game-area");
-let userInput = document.getElementById("user-input");
-let userCredentials = document.getElementById("user-credentials-box");
 let questionBox = document.getElementById("question-box");
 let questionSynonym = document.getElementById("question-synonym");
 let synonymDescription = document.getElementById("synonym-description");
@@ -491,7 +489,8 @@ function finishCategory(currentCategory) {
     if (currentCategory === "verb-category") {
         finishedCategories.push("Verb");
         infoProgress.textContent = `Congratulations! 
-        You finished all ${scoreTiers} tiers of the Verbs category!`;
+        You finished all ${scoreTiers} tiers of the Verbs category!
+        It took you ${scoreTries} tries to get here.`;
 
         // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category.
         optionsBox.classList.remove("hidden");
@@ -505,7 +504,8 @@ function finishCategory(currentCategory) {
     else if (currentCategory === "noun-category") {
         finishedCategories.push("Noun");
         infoProgress.textContent = `Congratulations! 
-        You finished all ${scoreTiers} tiers of the Nouns category!`;
+        You finished all ${scoreTiers} tiers of the Nouns category!
+        It took you ${scoreTries} tries to get here.`;
 
         // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category.
         optionsBox.classList.remove("hidden");
@@ -520,7 +520,8 @@ function finishCategory(currentCategory) {
         finishedCategories.push("Adjective");
 
         infoProgress.textContent = `Congratulations! 
-        You finished all ${scoreTiers} tiers of the Adjectives category!`;
+        You finished all ${scoreTiers} tiers of the Adjectives category!
+        It took you ${scoreTries} tries to get here.`;
 
         // Removes hidden class from continue button, allowing the user to click it and advance to choosing next category.
         optionsBox.classList.remove("hidden");
