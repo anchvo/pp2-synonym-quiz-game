@@ -75,6 +75,8 @@ As a User:
  - Featured in the website tab along with the title, the included Favicon shows an open book to the theme of the website and the title.
  - The Favicon will allow the user to get a first idea of what the website is about and clarifies the title by showing what kind of Game Space they can expect.
 
+ - Note that due to an unfixed bug, the Favicon is currently not showing.
+
 
 - __Start Page__
 
@@ -106,7 +108,7 @@ As a User:
 
 - The category choice is first display directly after starting the game via the start game button.
 - It allows the user to pick a category of their choosing, either verbs, nouns or adjectives and then displays the corresponding questions after being clicked on.
-- After finishing a category, the user can pick another category from the two remaining ones and after finishing two, they can pick the last one before ending the game.
+- After finishing a category, the user can pick another category from the two remaining ones and after finishing two, they can pick the last one before ending the game (see Mid Category Choice)
 
 ![Category Choice](assets/documentation/screenshots/category-choice.png)
 
@@ -133,13 +135,47 @@ As a User:
 
 - __Finished Category Page__
 
+- The finished category page is shown after a category is finished
+- It shows a congratulary message, that displays that the user as finished all 3 tiers of the category, referring to their score progress tracker.
+- It also states how many tries it took them to get to this page, also referring to their score progress tracker.
+- At the end, the page includes a continue button, that allows the user to advance the game. It resets the score and question count and leads to a page, where the user can choose another category.
 
+![Finished Category](assets/documentation/screenshots/finished-category.png)
+
+- __Mid Category Choice__
+
+- Similar to the starting category choice page, this page allows the user to choose which category he wants to play next.
+- Depending on the previously finished category or categories, the page respond to the already finished categories and only displays unfinished ones.
+- It also includes a short informative paragraph, informing the user that he can now choose another category.
+
+- Note that due to an unfixed bug, currently the continue button is also shown on this page
+
+![Mid Category Choice](assets/documentation/screenshots/mid-category-choice.png)
+
+- __ End Game Page__
+
+- The end game page is displayed when the user has finished all 3 categories and displays a congratulatory message.
+
+- Note that due to an unfixed bug, the end game page can currently not be reached or shown.
 
 ## Testing
 
 ### Validator Testing
 
 ### Bugs
+
+-__Fixed Bugs__
+
+- Next question button showing up even if an incorrect answer is chosen: fixed by setting class to hidden.
+- Progess score for the question tiers is counted every time a correct answer is clicked: fixed by moving the scoreTiers++ count to the correct function.
+
+-__Unfixed Bugs__
+
+- The Favicon is not loading correctly.
+- The continue button shows on the mid game category page although he should not.
+
+- After finishing the first category, the finished category page is shown. The continue button to the mid game category page works correctly and clears the variables via the clearGame function. In the background, the displayVerbsQuestion loop is running although the category is not chosen which leads to two display function loops running at the same time, leading to a wrong count of the question index and therefore to the next chosen category not displaying / loading correctly. This leads the site to not working correctly after the first finish of a category. 
+- Mentor and tutor support was used to try and fix this bug before submission but it has not been successful. For future use of the webpage, the fix of this bug is essential for the page to be working as intended.
 
 ## Deployment
 
@@ -164,9 +200,13 @@ As a User:
 
 - Martina Terlevic - my wonderful mentor
 - My sister
+- Holly and Thomas from tutor support
 
 ### Code
 
 - Trouble-Shooting for bugs and learning about additional code options was assissted by using [W3Schools](https://www.w3schools.com/) and [MDN Web Docs](https://developer.mozilla.org/en-US/).
+- The code for the creation of the startGame() and loadGame(gameType) functions has been taken and modified from the [Love Maths](https://github.com/anchvo/love-maths-walkthrough) walkthrough project that was created during the course with [Code Institute](https://codeinstitute.net).
 
 ### Content
+
+- The content for the questions, answers and examples were taken from and inspired by [Thesaurus.com](https://www.thesaurus.com/).

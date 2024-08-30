@@ -95,7 +95,8 @@ function startGame() {
  */
 function continueGame() {
 
-    questionBox.classList.add("hidden");
+    optionsBox.classList.add("hidden");
+    continueButton.classList.add("hidden");
     gameBox.classList.add("hidden");
     infoProgress.classList.add("hidden");
     questionBox.classList.add("hidden");
@@ -544,7 +545,9 @@ function finishCategory(currentCategory) {
 function clearGame() {
 
     questionBox.classList.add("hidden");
-    gameBox.classList.add("hidden");
+    gameBox.classList.add("hidden");    
+    optionsBox.classList.add("hidden");
+    continueButton.classList.add("hidden");
 
     gameType = "";
     currentQuestion;
