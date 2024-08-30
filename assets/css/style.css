@@ -118,27 +118,29 @@ button {
 #instructions-modal {
   display: none;
   position: fixed;
+  right: 10%;
+  left: 1%;
   z-index: 1;
-  /* Position left, right, float ?*/
   width: 80vw;
   height: 60vh;
   max-height: 450px;
   max-width: 830px;
-  margin-left: 8%;
-  /* overflow: auto; Remember for possible scrolling if needed */
-  /* Choose the color and opacity */
+  margin-left: 10%;
+  margin-right: 10%;
+  overflow: auto;
   background-color: rgba(38, 70, 83, 0.8);
   color: white;
 }
 
 /* Modal Content / Box */
 #instructions-modal-content {
-  /* background-color ? */
   margin: 10% auto;
-  padding: 20px;
+  padding: 5px;
   border: 1px solid #888;
   width: 60%;
-  height: 75%;
+  height: 50vh;
+  text-align: left;
+  font-size: smaller;
 }
 
 /* Closing the Modal Span */
